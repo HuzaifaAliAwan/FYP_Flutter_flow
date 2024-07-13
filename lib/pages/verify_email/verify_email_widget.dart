@@ -97,14 +97,14 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
                       labelText: 'Verification Code',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Inter',
                                 letterSpacing: 0.0,
                                 lineHeight: 16.0,
                               ),
                       alignLabelWithHint: false,
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Inter',
                                 letterSpacing: 0.0,
                               ),
                       enabledBorder: UnderlineInputBorder(
@@ -150,7 +150,7 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
                           : null,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Roboto',
                           letterSpacing: 0.0,
                         ),
                     validator:
@@ -182,7 +182,7 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
                       color: const Color(0xFF0080FF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Inter',
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                               ),

@@ -98,7 +98,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
             buttonSize: 40.0,
             icon: Icon(
               Icons.home,
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              color: FlutterFlowTheme.of(context).primaryBackground,
               size: 24.0,
             ),
             onPressed: () async {
@@ -121,7 +121,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
               buttonSize: 40.0,
               icon: Icon(
                 Icons.menu,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: FlutterFlowTheme.of(context).primaryBackground,
                 size: 24.0,
               ),
               onPressed: () async {
@@ -179,7 +179,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Roboto',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -189,7 +189,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Roboto',
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -206,7 +206,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Roboto',
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 letterSpacing: 0.0,
@@ -217,7 +217,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
                       Text(
                         'Rs. 2500/-',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Roboto',
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
@@ -225,7 +225,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
                       Text(
                         'Night',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              fontFamily: 'Roboto',
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.normal,
                             ),
@@ -263,7 +263,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      fontFamily: 'Roboto',
                                       letterSpacing: 0.0,
                                     ),
                               );
@@ -289,7 +289,7 @@ class _ViewPropertyWidgetState extends State<ViewPropertyWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Inter',
                                   color: Colors.white,
                                   letterSpacing: 0.0,
                                 ),

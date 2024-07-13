@@ -112,14 +112,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     child: Text(
                                       'Huzaifa Ali',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .titleMedium
                                           .override(
-                                            fontFamily: 'Inter',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 20.0,
+                                            fontFamily: 'Roboto',
                                             letterSpacing: 1.0,
-                                            fontWeight: FontWeight.w600,
                                           ),
                                     ),
                                   ),
@@ -128,14 +124,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     child: Text(
                                       'Property Owner',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .labelSmall
                                           .override(
-                                            fontFamily: 'Inter',
+                                            fontFamily: 'Roboto',
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 14.0,
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
                                           ),
                                     ),
                                   ),
@@ -201,11 +195,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: Text(
                                     'Home',
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .titleSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          fontFamily: 'Inter',
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -231,11 +223,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 child: Text(
                                   'Search',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                      .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                        fontFamily: 'Inter',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -260,11 +250,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 child: Text(
                                   'Message',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                      .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                        fontFamily: 'Inter',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -289,11 +277,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 child: Text(
                                   'Profile',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                      .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                        fontFamily: 'Inter',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -318,11 +304,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 child: Text(
                                   'Control Panel',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                      .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                        fontFamily: 'Inter',
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -362,8 +346,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: ListTile(
                         leading: Icon(
                           Icons.login_outlined,
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         title: Text(
                           'Logout',
@@ -371,13 +354,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FlutterFlowTheme.of(context).titleLarge.override(
                                     fontFamily: 'Inter',
                                     color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                        .primaryBackground,
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                        tileColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
+                        tileColor: const Color(0xFF7E2020),
                         dense: false,
                       ),
                     ),
@@ -512,7 +494,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     Icon(
                                       Icons.star,
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                          .primaryText,
                                       size: 24.0,
                                     ),
                                     Text(
@@ -520,7 +502,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -529,7 +511,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -676,7 +658,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     Icon(
                                       Icons.star,
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                          .primaryText,
                                       size: 24.0,
                                     ),
                                     Text(
@@ -684,7 +666,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -693,7 +675,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -840,7 +822,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     Icon(
                                       Icons.star,
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                          .primaryText,
                                       size: 24.0,
                                     ),
                                     Text(
@@ -848,7 +830,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -857,7 +839,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            fontFamily: 'Roboto',
                                             letterSpacing: 0.0,
                                           ),
                                     ),
