@@ -10,3 +10,5 @@ export '/pages/conversations_page/conversations_page_widget.dart'
     show ConversationsPageWidget;
 export '/pages/message_page/message_page_widget.dart' show MessagePageWidget;
 export '/pages/view_property/view_property_widget.dart' show ViewPropertyWidget;
+export '/pages/control_panel_property_owner/control_panel_property_owner_widget.dart'
+    show ControlPanelPropertyOwnerWidget;

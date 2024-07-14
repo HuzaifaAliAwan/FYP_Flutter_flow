@@ -158,6 +158,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'ControlPanelPropertyOwner',
+          path: '/controlPanelPropertyOwner',
+          builder: (context, params) => ControlPanelPropertyOwnerWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
