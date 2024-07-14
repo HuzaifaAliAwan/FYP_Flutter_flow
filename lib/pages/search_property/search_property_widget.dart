@@ -461,7 +461,16 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
                 if (Navigator.of(context).canPop()) {
                   context.pop();
                 }
-                context.pushNamed('searchProperty');
+                context.pushNamed(
+                  'HomePage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 300),
+                    ),
+                  },
+                );
               },
             ),
           ),

@@ -467,7 +467,16 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                 if (Navigator.of(context).canPop()) {
                   context.pop();
                 }
-                context.pushNamed('ProfilePage');
+                context.pushNamed(
+                  'HomePage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 300),
+                    ),
+                  },
+                );
               },
             ),
           ),
