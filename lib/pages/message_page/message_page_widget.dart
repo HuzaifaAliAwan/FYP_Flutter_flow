@@ -1,14 +1,12 @@
-import '/components/bottom_sheet/bottom_sheet_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'search_property_model.dart';
-export 'search_property_model.dart';
+import 'message_page_model.dart';
+export 'message_page_model.dart';
 
-class SearchPropertyWidget extends StatefulWidget {
-  const SearchPropertyWidget({
+class MessagePageWidget extends StatefulWidget {
+  const MessagePageWidget({
     super.key,
     this.pagename,
   });
@@ -16,18 +14,18 @@ class SearchPropertyWidget extends StatefulWidget {
   final String? pagename;
 
   @override
-  State<SearchPropertyWidget> createState() => _SearchPropertyWidgetState();
+  State<MessagePageWidget> createState() => _MessagePageWidgetState();
 }
 
-class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
-  late SearchPropertyModel _model;
+class _MessagePageWidgetState extends State<MessagePageWidget> {
+  late MessagePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SearchPropertyModel());
+    _model = createModel(context, () => MessagePageModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -239,7 +237,6 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
                               width: 100.0,
                               height: 50.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFF03327D),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: Align(
@@ -445,6 +442,8 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
         ),
         appBar: AppBar(
           backgroundColor: const Color(0xFF0C55C6),
+          iconTheme: IconThemeData(
+              color: FlutterFlowTheme.of(context).primaryBackground),
           automaticallyImplyLeading: false,
           leading: Align(
             alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -453,7 +452,7 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
               borderWidth: 0.0,
               buttonSize: 40.0,
               icon: const Icon(
-                Icons.home,
+                Icons.chevron_left,
                 color: Colors.white,
                 size: 24.0,
               ),
@@ -461,14 +460,23 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
                 if (Navigator.of(context).canPop()) {
                   context.pop();
                 }
-                context.pushNamed('searchProperty');
+                context.pushNamed(
+                  'ConversationsPage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 300),
+                    ),
+                  },
+                );
               },
             ),
           ),
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Text(
-              'Search Property',
+              'Message',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
                     fontFamily: 'Inter',
                     color: Colors.white,
@@ -502,177 +510,216 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Stack(
-                children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        useSafeArea: true,
-                        context: context,
-                        builder: (context) {
-                          return GestureDetector(
-                            onTap: () => _model.unfocusNode.canRequestFocus
-                                ? FocusScope.of(context)
-                                    .requestFocus(_model.unfocusNode)
-                                : FocusScope.of(context).unfocus(),
-                            child: Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: const SizedBox(
-                                height: 400.0,
-                                child: BottomSheetWidget(),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Menahil',
+                      style:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: 'Inter',
+                                letterSpacing: 0.0,
                               ),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 700.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(0.0),
+                    ),
+                    Container(
+                      width: 50.0,
+                      height: 50.0,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          'https://tribune-reloaded.s3.amazonaws.com/media/images/1163447-google-1471327884/1163447-google-1471327884.jpg',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
+                      child: Image.network(
+                        'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.webp?b=1&s=170667a&w=0&k=20&c=YQ_j83pg9fB-HWOd1Qur3_kBmG_ot_hZty8pvoFkr6A=',
+                        fit: BoxFit.cover,
                       ),
                     ),
+                  ],
+                ),
+                Opacity(
+                  opacity: 0.8,
+                  child: Divider(
+                    thickness: 2.0,
+                    color: FlutterFlowTheme.of(context).secondaryText,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 46.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
+                ),
+                Flexible(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Container(
+                          width: 260.0,
+                          constraints: const BoxConstraints(
+                            minHeight: 50.0,
+                          ),
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF8BB5F5),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(20.0),
+                              topLeft: Radius.circular(0.0),
+                              topRight: Radius.circular(20.0),
+                            ),
+                          ),
+                          child: Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 5.0, 0.0),
-                              child: TextFormField(
-                                controller: _model.textController,
-                                focusNode: _model.textFieldFocusNode,
-                                onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.textController',
-                                  const Duration(milliseconds: 2000),
-                                  () => setState(() {}),
-                                ),
-                                autofocus: false,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Search',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  hintText: 'Chitral Resorts',
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  suffixIcon:
-                                      _model.textController!.text.isNotEmpty
-                                          ? InkWell(
-                                              onTap: () async {
-                                                _model.textController?.clear();
-                                                setState(() {});
-                                              },
-                                              child: const Icon(
-                                                Icons.clear,
-                                                size: 22,
-                                              ),
-                                            )
-                                          : null,
-                                ),
+                                  10.0, 5.0, 10.0, 5.0),
+                              child: Text(
+                                'Hello ',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Roboto',
+                                      color: Colors.black,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                validator: _model.textControllerValidator
-                                    .asValidator(context),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.search,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
+                      Align(
+                        alignment: const AlignmentDirectional(1.0, 0.0),
+                        child: Container(
+                          width: 260.0,
+                          constraints: const BoxConstraints(
+                            minHeight: 50.0,
+                          ),
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF8BE2F5),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(20.0),
+                              topLeft: Radius.circular(20.0),
+                              topRight: Radius.circular(0.0),
+                            ),
+                          ),
+                          child: Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 5.0, 10.0, 5.0),
+                              child: Text(
+                                'Is it still available?',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.black,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ].divide(const SizedBox(height: 10.0)),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 2.0,
                     ),
                   ),
-                ],
-              ),
-            ],
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          child: TextFormField(
+                            controller: _model.textController,
+                            focusNode: _model.textFieldFocusNode,
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
+                              errorBorder: UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Roboto',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                      FlutterFlowIconButton(
+                        borderRadius: 20.0,
+                        borderWidth: 1.0,
+                        buttonSize: 40.0,
+                        icon: Icon(
+                          Icons.send,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
+                        onPressed: () {
+                          print('IconButton pressed ...');
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

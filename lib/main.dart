@@ -115,8 +115,9 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': const HomePageWidget(),
-      'SearchProperty': const SearchPropertyWidget(),
-      'loginRegister': const LoginRegisterWidget(),
+      'searchProperty': const SearchPropertyWidget(),
+      'ConversationsPage': const ConversationsPageWidget(),
+      'ProfilePage': const ProfilePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -145,18 +146,26 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.search_sharp,
+              Icons.search,
               size: 24.0,
             ),
-            label: 'Search Property',
+            label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.message_outlined,
               size: 24.0,
             ),
             label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              size: 24.0,
+            ),
+            label: 'Profile',
             tooltip: '',
           )
         ],

@@ -209,25 +209,48 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
-                          child: Container(
-                            width: 100.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Search',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'searchProperty',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                },
+                              );
+
+                              if (scaffoldKey.currentState!.isDrawerOpen ||
+                                  scaffoldKey.currentState!.isEndDrawerOpen) {
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Container(
+                              width: 100.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Search',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -236,25 +259,48 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
-                          child: Container(
-                            width: 100.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Message',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'ConversationsPage',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                },
+                              );
+
+                              if (scaffoldKey.currentState!.isDrawerOpen ||
+                                  scaffoldKey.currentState!.isEndDrawerOpen) {
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Container(
+                              width: 100.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Message',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -263,25 +309,48 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
-                          child: Container(
-                            width: 100.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Profile',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'ProfilePage',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                },
+                              );
+
+                              if (scaffoldKey.currentState!.isDrawerOpen ||
+                                  scaffoldKey.currentState!.isEndDrawerOpen) {
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Container(
+                              width: 100.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Profile',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -372,36 +441,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         appBar: AppBar(
           backgroundColor: const Color(0xFF0C55C6),
           automaticallyImplyLeading: false,
-          leading: Align(
-            alignment: const AlignmentDirectional(-1.0, 0.0),
-            child: FlutterFlowIconButton(
-              borderRadius: 20.0,
-              borderWidth: 0.0,
-              buttonSize: 40.0,
-              icon: const Icon(
-                Icons.home,
-                color: Colors.white,
-                size: 24.0,
-              ),
-              onPressed: () async {
-                if (Navigator.of(context).canPop()) {
-                  context.pop();
-                }
-                context.pushNamed('HomePage');
-              },
-            ),
-          ),
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
-            child: Text(
-              'House Hoteling  ',
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Inter',
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.w600,
-                  ),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
+              child: Text(
+                'House Hoteling  ',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Inter',
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
             ),
           ),
           actions: [

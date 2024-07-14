@@ -1,14 +1,12 @@
-import '/components/bottom_sheet/bottom_sheet_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'search_property_model.dart';
-export 'search_property_model.dart';
+import 'conversations_page_model.dart';
+export 'conversations_page_model.dart';
 
-class SearchPropertyWidget extends StatefulWidget {
-  const SearchPropertyWidget({
+class ConversationsPageWidget extends StatefulWidget {
+  const ConversationsPageWidget({
     super.key,
     this.pagename,
   });
@@ -16,21 +14,19 @@ class SearchPropertyWidget extends StatefulWidget {
   final String? pagename;
 
   @override
-  State<SearchPropertyWidget> createState() => _SearchPropertyWidgetState();
+  State<ConversationsPageWidget> createState() =>
+      _ConversationsPageWidgetState();
 }
 
-class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
-  late SearchPropertyModel _model;
+class _ConversationsPageWidgetState extends State<ConversationsPageWidget> {
+  late ConversationsPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SearchPropertyModel());
-
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model = createModel(context, () => ConversationsPageModel());
   }
 
   @override
@@ -170,7 +166,7 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               context.pushNamed(
-                                'HomePage',
+                                'ConversationsPage',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
@@ -239,7 +235,6 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
                               width: 100.0,
                               height: 50.0,
                               decoration: BoxDecoration(
-                                color: const Color(0xFF03327D),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: Align(
@@ -290,6 +285,7 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
                               width: 100.0,
                               height: 50.0,
                               decoration: BoxDecoration(
+                                color: const Color(0xFF03327D),
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: Align(
@@ -461,14 +457,14 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
                 if (Navigator.of(context).canPop()) {
                   context.pop();
                 }
-                context.pushNamed('searchProperty');
+                context.pushNamed('ConversationsPage');
               },
             ),
           ),
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Text(
-              'Search Property',
+              'Conversations',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
                     fontFamily: 'Inter',
                     color: Colors.white,
@@ -502,177 +498,97 @@ class _SearchPropertyWidgetState extends State<SearchPropertyWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Stack(
-                children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        useSafeArea: true,
-                        context: context,
-                        builder: (context) {
-                          return GestureDetector(
-                            onTap: () => _model.unfocusNode.canRequestFocus
-                                ? FocusScope.of(context)
-                                    .requestFocus(_model.unfocusNode)
-                                : FocusScope.of(context).unfocus(),
-                            child: Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: const SizedBox(
-                                height: 400.0,
-                                child: BottomSheetWidget(),
-                              ),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 700.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(0.0),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          'https://tribune-reloaded.s3.amazonaws.com/media/images/1163447-google-1471327884/1163447-google-1471327884.jpg',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 46.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 5.0, 0.0),
-                              child: TextFormField(
-                                controller: _model.textController,
-                                focusNode: _model.textFieldFocusNode,
-                                onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.textController',
-                                  const Duration(milliseconds: 2000),
-                                  () => setState(() {}),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 10.0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'MessagePage',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 300),
                                 ),
-                                autofocus: false,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Search',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  hintText: 'Chitral Resorts',
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  suffixIcon:
-                                      _model.textController!.text.isNotEmpty
-                                          ? InkWell(
-                                              onTap: () async {
-                                                _model.textController?.clear();
-                                                setState(() {});
-                                              },
-                                              child: const Icon(
-                                                Icons.clear,
-                                                size: 22,
-                                              ),
-                                            )
-                                          : null,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      letterSpacing: 0.0,
-                                    ),
-                                validator: _model.textControllerValidator
-                                    .asValidator(context),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                5.0, 0.0, 0.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.search,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
                               },
-                            ),
+                            );
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Ahmed Ali',
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineSmall
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        'Chitral Resorts',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    '(15)',
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Opacity(
+                                opacity: 0.8,
+                                child: Divider(
+                                  thickness: 2.0,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ].divide(const SizedBox(height: 15.0)),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

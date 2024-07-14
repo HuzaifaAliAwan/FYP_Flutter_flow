@@ -99,23 +99,60 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ViewPropertyWidget(),
         ),
         FFRoute(
-          name: 'SearchProperty',
-          path: '/searchProperty',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'SearchProperty')
-              : const SearchPropertyWidget(),
-        ),
-        FFRoute(
           name: 'loginRegister',
           path: '/loginRegister',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'loginRegister')
-              : const LoginRegisterWidget(),
+          builder: (context, params) => const LoginRegisterWidget(),
         ),
         FFRoute(
           name: 'verifyEmail',
           path: '/verifyEmail',
           builder: (context, params) => const VerifyEmailWidget(),
+        ),
+        FFRoute(
+          name: 'ProfilePage',
+          path: '/profilePage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'ProfilePage')
+              : ProfilePageWidget(
+                  pagename: params.getParam(
+                    'pagename',
+                    ParamType.String,
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'searchProperty',
+          path: '/searchProperty',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'searchProperty')
+              : SearchPropertyWidget(
+                  pagename: params.getParam(
+                    'pagename',
+                    ParamType.String,
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'ConversationsPage',
+          path: '/conversationsPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'ConversationsPage')
+              : ConversationsPageWidget(
+                  pagename: params.getParam(
+                    'pagename',
+                    ParamType.String,
+                  ),
+                ),
+        ),
+        FFRoute(
+          name: 'MessagePage',
+          path: '/messagePage',
+          builder: (context, params) => MessagePageWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
