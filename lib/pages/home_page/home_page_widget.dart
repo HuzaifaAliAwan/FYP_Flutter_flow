@@ -501,6 +501,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 300),
                         ),
                       },
                     );
@@ -667,7 +668,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('ViewProperty');
+                    context.pushNamed(
+                      'ViewProperty',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 300),
+                        ),
+                      },
+                    );
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -831,7 +841,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('ViewProperty');
+                    context.pushNamed(
+                      'ViewProperty',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 300),
+                        ),
+                      },
+                    );
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.max,

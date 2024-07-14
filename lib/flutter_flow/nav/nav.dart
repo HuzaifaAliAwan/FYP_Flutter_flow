@@ -94,11 +94,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
         ),
         FFRoute(
-          name: 'ViewProperty',
-          path: '/viewProperty',
-          builder: (context, params) => const ViewPropertyWidget(),
-        ),
-        FFRoute(
           name: 'loginRegister',
           path: '/loginRegister',
           builder: (context, params) => const LoginRegisterWidget(),
@@ -148,6 +143,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'MessagePage',
           path: '/messagePage',
           builder: (context, params) => MessagePageWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ViewProperty',
+          path: '/viewProperty',
+          builder: (context, params) => ViewPropertyWidget(
             pagename: params.getParam(
               'pagename',
               ParamType.String,
