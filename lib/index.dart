@@ -10,5 +10,8 @@ export '/pages/conversations_page/conversations_page_widget.dart'
     show ConversationsPageWidget;
 export '/pages/message_page/message_page_widget.dart' show MessagePageWidget;
 export '/pages/view_property/view_property_widget.dart' show ViewPropertyWidget;
-export '/pages/control_panel_property_owner/control_panel_property_owner_widget.dart'
-    show ControlPanelPropertyOwnerWidget;
+export '/pages/control_panel/control_panel_widget.dart' show ControlPanelWidget;
+export '/pages/control_panel_properties/control_panel_properties_widget.dart'
+    show ControlPanelPropertiesWidget;
+export '/pages/control_panel_booking/control_panel_booking_widget.dart'
+    show ControlPanelBookingWidget;

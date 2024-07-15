@@ -1,13 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'control_panel_property_owner_model.dart';
-export 'control_panel_property_owner_model.dart';
+import 'control_panel_model.dart';
+export 'control_panel_model.dart';
 
-class ControlPanelPropertyOwnerWidget extends StatefulWidget {
-  const ControlPanelPropertyOwnerWidget({
+class ControlPanelWidget extends StatefulWidget {
+  const ControlPanelWidget({
     super.key,
     this.pagename,
   });
@@ -15,20 +16,18 @@ class ControlPanelPropertyOwnerWidget extends StatefulWidget {
   final String? pagename;
 
   @override
-  State<ControlPanelPropertyOwnerWidget> createState() =>
-      _ControlPanelPropertyOwnerWidgetState();
+  State<ControlPanelWidget> createState() => _ControlPanelWidgetState();
 }
 
-class _ControlPanelPropertyOwnerWidgetState
-    extends State<ControlPanelPropertyOwnerWidget> {
-  late ControlPanelPropertyOwnerModel _model;
+class _ControlPanelWidgetState extends State<ControlPanelWidget> {
+  late ControlPanelModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ControlPanelPropertyOwnerModel());
+    _model = createModel(context, () => ControlPanelModel());
   }
 
   @override
@@ -106,34 +105,40 @@ class _ControlPanelPropertyOwnerWidgetState
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.network(
-                                      'https://media.istockphoto.com/id/906808234/photo/handsome-man.jpg?s=612x612&w=0&k=20&c=Ec8IY-ETslaS56vmO77BJyEOpPM1hzJlLbs6xeKRoAc=',
+                                      'https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                   Align(
                                     alignment: const AlignmentDirectional(1.0, -1.0),
-                                    child: Text(
-                                      'Huzaifa Ali',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            letterSpacing: 1.0,
-                                          ),
+                                    child: AuthUserStreamWidget(
+                                      builder: (context) => Text(
+                                        currentUserDisplayName,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'Roboto',
+                                              letterSpacing: 1.0,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                   Align(
                                     alignment: const AlignmentDirectional(1.0, -1.0),
-                                    child: Text(
-                                      'Property Owner',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            letterSpacing: 0.0,
-                                          ),
+                                    child: AuthUserStreamWidget(
+                                      builder: (context) => Text(
+                                        valueOrDefault(
+                                            currentUserDocument?.role, ''),
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .override(
+                                              fontFamily: 'Roboto',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
                                     ),
                                   ),
                                 ].divide(const SizedBox(height: 5.0)),
@@ -417,16 +422,11 @@ class _ControlPanelPropertyOwnerWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed(
-                          'loginRegister',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 300),
-                            ),
-                          },
-                        );
+                        GoRouter.of(context).prepareAuthEvent();
+                        await authManager.signOut();
+                        GoRouter.of(context).clearRedirectLocation();
+
+                        context.goNamedAuth('loginRegister', context.mounted);
                       },
                       child: ListTile(
                         leading: Icon(
@@ -532,25 +532,43 @@ class _ControlPanelPropertyOwnerWidgetState
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const Icon(
-                          Icons.house_outlined,
-                          color: Color(0xFF0C55C6),
-                          size: 50.0,
-                        ),
-                        Text(
-                          'Properties',
-                          style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Roboto',
-                                    color: const Color(0xFF0C55C6),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                      ],
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(
+                          'ControlPanelProperties',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 300),
+                            ),
+                          },
+                        );
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          const Icon(
+                            Icons.house_outlined,
+                            color: Color(0xFF0C55C6),
+                            size: 50.0,
+                          ),
+                          Text(
+                            'Properties',
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Roboto',
+                                      color: const Color(0xFF0C55C6),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -559,25 +577,43 @@ class _ControlPanelPropertyOwnerWidgetState
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const FaIcon(
-                          FontAwesomeIcons.hotel,
-                          color: Color(0xFF0C55C6),
-                          size: 50.0,
-                        ),
-                        Text(
-                          'Bookings',
-                          style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Roboto',
-                                    color: const Color(0xFF0C55C6),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                      ].divide(const SizedBox(height: 5.0)),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(
+                          'ControlPanelBooking',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 300),
+                            ),
+                          },
+                        );
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          const FaIcon(
+                            FontAwesomeIcons.hotel,
+                            color: Color(0xFF0C55C6),
+                            size: 50.0,
+                          ),
+                          Text(
+                            'Bookings',
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Roboto',
+                                      color: const Color(0xFF0C55C6),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
+                        ].divide(const SizedBox(height: 5.0)),
+                      ),
                     ),
                   ),
                 ),

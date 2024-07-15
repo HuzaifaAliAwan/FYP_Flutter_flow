@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -31,32 +33,32 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.loginEmailTextController ??= TextEditingController();
+    _model.loginEmailFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.loginPasswordTextController ??= TextEditingController();
+    _model.loginPasswordFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.inputNameTextController ??= TextEditingController();
+    _model.inputNameFocusNode ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.inputPhoneTextController ??= TextEditingController();
+    _model.inputPhoneFocusNode ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.inputCnicTextController ??= TextEditingController();
+    _model.inputCnicFocusNode ??= FocusNode();
 
-    _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode6 ??= FocusNode();
+    _model.inputAddressTextController ??= TextEditingController();
+    _model.inputAddressFocusNode ??= FocusNode();
 
-    _model.textController7 ??= TextEditingController();
-    _model.textFieldFocusNode7 ??= FocusNode();
+    _model.inputEmailTextController ??= TextEditingController();
+    _model.inputEmailFocusNode ??= FocusNode();
 
-    _model.textController8 ??= TextEditingController();
-    _model.textFieldFocusNode8 ??= FocusNode();
+    _model.inputPasswordTextController ??= TextEditingController();
+    _model.inputPasswordFocusNode ??= FocusNode();
 
-    _model.textController9 ??= TextEditingController();
-    _model.textFieldFocusNode9 ??= FocusNode();
+    _model.inputConfirmPasswordTextController ??= TextEditingController();
+    _model.inputConfirmPasswordFocusNode ??= FocusNode();
   }
 
   @override
@@ -142,10 +144,10 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: TextFormField(
-                                    controller: _model.textController1,
-                                    focusNode: _model.textFieldFocusNode1,
+                                    controller: _model.loginEmailTextController,
+                                    focusNode: _model.loginEmailFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.textController1',
+                                      '_model.loginEmailTextController',
                                       const Duration(milliseconds: 2000),
                                       () => setState(() {}),
                                     ),
@@ -206,10 +208,13 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             BorderRadius.circular(0.0),
                                       ),
                                       suffixIcon: _model
-                                              .textController1!.text.isNotEmpty
+                                              .loginEmailTextController!
+                                              .text
+                                              .isNotEmpty
                                           ? InkWell(
                                               onTap: () async {
-                                                _model.textController1?.clear();
+                                                _model.loginEmailTextController
+                                                    ?.clear();
                                                 setState(() {});
                                               },
                                               child: Icon(
@@ -228,7 +233,8 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                           fontFamily: 'Roboto',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController1Validator
+                                    validator: _model
+                                        .loginEmailTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -236,12 +242,14 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: TextFormField(
-                                    controller: _model.textController2,
-                                    focusNode: _model.textFieldFocusNode2,
+                                    controller:
+                                        _model.loginPasswordTextController,
+                                    focusNode: _model.loginPasswordFocusNode,
                                     autofocus: true,
                                     textCapitalization: TextCapitalization.none,
                                     textInputAction: TextInputAction.next,
-                                    obscureText: !_model.passwordVisibility1,
+                                    obscureText:
+                                        !_model.loginPasswordVisibility,
                                     decoration: InputDecoration(
                                       labelText: 'Password',
                                       labelStyle: FlutterFlowTheme.of(context)
@@ -296,13 +304,13 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       ),
                                       suffixIcon: InkWell(
                                         onTap: () => setState(
-                                          () => _model.passwordVisibility1 =
-                                              !_model.passwordVisibility1,
+                                          () => _model.loginPasswordVisibility =
+                                              !_model.loginPasswordVisibility,
                                         ),
                                         focusNode:
                                             FocusNode(skipTraversal: true),
                                         child: Icon(
-                                          _model.passwordVisibility1
+                                          _model.loginPasswordVisibility
                                               ? Icons.visibility_outlined
                                               : Icons.visibility_off_outlined,
                                           color: FlutterFlowTheme.of(context)
@@ -317,7 +325,8 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                           fontFamily: 'Roboto',
                                           letterSpacing: 0.0,
                                         ),
-                                    validator: _model.textController2Validator
+                                    validator: _model
+                                        .loginPasswordTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -326,9 +335,9 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       0.0, 20.0, 0.0, 0.0),
                                   child: FlutterFlowDropDown<String>(
                                     controller:
-                                        _model.dropDownValueController1 ??=
+                                        _model.dropDownValueController ??=
                                             FormFieldController<String>(
-                                      _model.dropDownValue1 ??= '',
+                                      _model.dropDownValue ??= '',
                                     ),
                                     options:
                                         List<String>.from(['Option 1', '1']),
@@ -337,7 +346,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       'Customer'
                                     ],
                                     onChanged: (val) => setState(
-                                        () => _model.dropDownValue1 = val),
+                                        () => _model.dropDownValue = val),
                                     width: double.infinity,
                                     height: 56.0,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -373,18 +382,20 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       0.0, 40.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      context.pushNamed(
-                                        'HomePage',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                          ),
-                                        },
+                                      GoRouter.of(context).prepareAuthEvent();
+
+                                      final user =
+                                          await authManager.signInWithEmail(
+                                        context,
+                                        _model.loginEmailTextController.text,
+                                        _model.loginPasswordTextController.text,
                                       );
+                                      if (user == null) {
+                                        return;
+                                      }
+
+                                      context.goNamedAuth(
+                                          'HomePage', context.mounted);
                                     },
                                     text: 'Login',
                                     options: FFButtonOptions(
@@ -477,10 +488,11 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController3,
-                                        focusNode: _model.textFieldFocusNode3,
+                                        controller:
+                                            _model.inputNameTextController,
+                                        focusNode: _model.inputNameFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.textController3',
+                                          '_model.inputNameTextController',
                                           const Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
@@ -548,11 +560,14 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             borderRadius:
                                                 BorderRadius.circular(0.0),
                                           ),
-                                          suffixIcon: _model.textController3!
-                                                  .text.isNotEmpty
+                                          suffixIcon: _model
+                                                  .inputNameTextController!
+                                                  .text
+                                                  .isNotEmpty
                                               ? InkWell(
                                                   onTap: () async {
-                                                    _model.textController3
+                                                    _model
+                                                        .inputNameTextController
                                                         ?.clear();
                                                     setState(() {});
                                                   },
@@ -573,7 +588,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .textController3Validator
+                                            .inputNameTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -581,10 +596,11 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController4,
-                                        focusNode: _model.textFieldFocusNode4,
+                                        controller:
+                                            _model.inputPhoneTextController,
+                                        focusNode: _model.inputPhoneFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.textController4',
+                                          '_model.inputPhoneTextController',
                                           const Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
@@ -652,11 +668,14 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             borderRadius:
                                                 BorderRadius.circular(0.0),
                                           ),
-                                          suffixIcon: _model.textController4!
-                                                  .text.isNotEmpty
+                                          suffixIcon: _model
+                                                  .inputPhoneTextController!
+                                                  .text
+                                                  .isNotEmpty
                                               ? InkWell(
                                                   onTap: () async {
-                                                    _model.textController4
+                                                    _model
+                                                        .inputPhoneTextController
                                                         ?.clear();
                                                     setState(() {});
                                                   },
@@ -677,7 +696,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .textController4Validator
+                                            .inputPhoneTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -685,10 +704,11 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController5,
-                                        focusNode: _model.textFieldFocusNode5,
+                                        controller:
+                                            _model.inputCnicTextController,
+                                        focusNode: _model.inputCnicFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.textController5',
+                                          '_model.inputCnicTextController',
                                           const Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
@@ -756,11 +776,14 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             borderRadius:
                                                 BorderRadius.circular(0.0),
                                           ),
-                                          suffixIcon: _model.textController5!
-                                                  .text.isNotEmpty
+                                          suffixIcon: _model
+                                                  .inputCnicTextController!
+                                                  .text
+                                                  .isNotEmpty
                                               ? InkWell(
                                                   onTap: () async {
-                                                    _model.textController5
+                                                    _model
+                                                        .inputCnicTextController
                                                         ?.clear();
                                                     setState(() {});
                                                   },
@@ -781,7 +804,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .textController5Validator
+                                            .inputCnicTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -789,10 +812,11 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController6,
-                                        focusNode: _model.textFieldFocusNode6,
+                                        controller:
+                                            _model.inputAddressTextController,
+                                        focusNode: _model.inputAddressFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.textController6',
+                                          '_model.inputAddressTextController',
                                           const Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
@@ -860,11 +884,14 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             borderRadius:
                                                 BorderRadius.circular(0.0),
                                           ),
-                                          suffixIcon: _model.textController6!
-                                                  .text.isNotEmpty
+                                          suffixIcon: _model
+                                                  .inputAddressTextController!
+                                                  .text
+                                                  .isNotEmpty
                                               ? InkWell(
                                                   onTap: () async {
-                                                    _model.textController6
+                                                    _model
+                                                        .inputAddressTextController
                                                         ?.clear();
                                                     setState(() {});
                                                   },
@@ -885,7 +912,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .textController6Validator
+                                            .inputAddressTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -893,10 +920,11 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController7,
-                                        focusNode: _model.textFieldFocusNode7,
+                                        controller:
+                                            _model.inputEmailTextController,
+                                        focusNode: _model.inputEmailFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.textController7',
+                                          '_model.inputEmailTextController',
                                           const Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
@@ -964,11 +992,14 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             borderRadius:
                                                 BorderRadius.circular(0.0),
                                           ),
-                                          suffixIcon: _model.textController7!
-                                                  .text.isNotEmpty
+                                          suffixIcon: _model
+                                                  .inputEmailTextController!
+                                                  .text
+                                                  .isNotEmpty
                                               ? InkWell(
                                                   onTap: () async {
-                                                    _model.textController7
+                                                    _model
+                                                        .inputEmailTextController
                                                         ?.clear();
                                                     setState(() {});
                                                   },
@@ -989,7 +1020,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .textController7Validator
+                                            .inputEmailTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -997,14 +1028,16 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController8,
-                                        focusNode: _model.textFieldFocusNode8,
+                                        controller:
+                                            _model.inputPasswordTextController,
+                                        focusNode:
+                                            _model.inputPasswordFocusNode,
                                         autofocus: true,
                                         textCapitalization:
                                             TextCapitalization.none,
                                         textInputAction: TextInputAction.next,
                                         obscureText:
-                                            !_model.passwordVisibility2,
+                                            !_model.inputPasswordVisibility,
                                         decoration: InputDecoration(
                                           labelText: 'Password',
                                           labelStyle:
@@ -1066,13 +1099,15 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                           ),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
-                                              () => _model.passwordVisibility2 =
-                                                  !_model.passwordVisibility2,
+                                              () => _model
+                                                      .inputPasswordVisibility =
+                                                  !_model
+                                                      .inputPasswordVisibility,
                                             ),
                                             focusNode:
                                                 FocusNode(skipTraversal: true),
                                             child: Icon(
-                                              _model.passwordVisibility2
+                                              _model.inputPasswordVisibility
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
@@ -1090,7 +1125,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .textController8Validator
+                                            .inputPasswordTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -1098,14 +1133,16 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController9,
-                                        focusNode: _model.textFieldFocusNode9,
+                                        controller: _model
+                                            .inputConfirmPasswordTextController,
+                                        focusNode: _model
+                                            .inputConfirmPasswordFocusNode,
                                         autofocus: true,
                                         textCapitalization:
                                             TextCapitalization.none,
                                         textInputAction: TextInputAction.next,
-                                        obscureText:
-                                            !_model.passwordVisibility3,
+                                        obscureText: !_model
+                                            .inputConfirmPasswordVisibility,
                                         decoration: InputDecoration(
                                           labelText: 'Confirm Password',
                                           labelStyle:
@@ -1167,13 +1204,15 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                           ),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
-                                              () => _model.passwordVisibility3 =
-                                                  !_model.passwordVisibility3,
+                                              () => _model
+                                                      .inputConfirmPasswordVisibility =
+                                                  !_model
+                                                      .inputConfirmPasswordVisibility,
                                             ),
                                             focusNode:
                                                 FocusNode(skipTraversal: true),
                                             child: Icon(
-                                              _model.passwordVisibility3
+                                              _model.inputConfirmPasswordVisibility
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
@@ -1191,7 +1230,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
-                                            .textController9Validator
+                                            .inputConfirmPasswordTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -1200,18 +1239,18 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                           0.0, 20.0, 0.0, 0.0),
                                       child: FlutterFlowDropDown<String>(
                                         controller:
-                                            _model.dropDownValueController2 ??=
+                                            _model.inputRoleValueController ??=
                                                 FormFieldController<String>(
-                                          _model.dropDownValue2 ??= '',
+                                          _model.inputRoleValue ??= '',
                                         ),
                                         options: List<String>.from(
-                                            ['Option 1', '1']),
+                                            ['Property Owner', 'Customer']),
                                         optionLabels: const [
                                           'Property Owner',
                                           'Customer'
                                         ],
                                         onChanged: (val) => setState(
-                                            () => _model.dropDownValue2 = val),
+                                            () => _model.inputRoleValue = val),
                                         width: double.infinity,
                                         height: 56.0,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -1248,8 +1287,92 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             0.0, 40.0, 0.0, 40.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            context.pushNamed(
-                                              'verifyEmail',
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
+                                            if (_model
+                                                    .inputPasswordTextController
+                                                    .text !=
+                                                _model
+                                                    .inputConfirmPasswordTextController
+                                                    .text) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                const SnackBar(
+                                                  content: Text(
+                                                    'Passwords don\'t match!',
+                                                  ),
+                                                ),
+                                              );
+                                              return;
+                                            }
+
+                                            final user = await authManager
+                                                .createAccountWithEmail(
+                                              context,
+                                              _model.inputEmailTextController
+                                                  .text,
+                                              _model.inputPasswordTextController
+                                                  .text,
+                                            );
+                                            if (user == null) {
+                                              return;
+                                            }
+
+                                            await UsersRecord.collection
+                                                .doc(user.uid)
+                                                .update({
+                                              ...createUsersRecordData(
+                                                email: _model
+                                                    .inputEmailTextController
+                                                    .text,
+                                                displayName: _model
+                                                    .inputNameTextController
+                                                    .text,
+                                                phoneNumber: _model
+                                                    .inputPhoneTextController
+                                                    .text,
+                                                photoUrl: 'null',
+                                                address: _model
+                                                    .inputAddressTextController
+                                                    .text,
+                                                cnic: _model
+                                                    .inputCnicTextController
+                                                    .text,
+                                                role: _model.inputRoleValue,
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'created_time': FieldValue
+                                                      .serverTimestamp(),
+                                                },
+                                              ),
+                                            });
+
+                                            await authManager
+                                                .sendEmailVerification();
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text(
+                                                      'Email Verification'),
+                                                  content: const Text(
+                                                      'An email has been sent to you to verify your account.'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+
+                                            context.pushNamedAuth(
+                                              'loginRegister',
+                                              context.mounted,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
                                                     const TransitionInfo(

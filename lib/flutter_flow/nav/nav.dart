@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -160,9 +162,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ControlPanelPropertyOwner',
-          path: '/controlPanelPropertyOwner',
-          builder: (context, params) => ControlPanelPropertyOwnerWidget(
+          name: 'ControlPanel',
+          path: '/controlPanel',
+          builder: (context, params) => ControlPanelWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ControlPanelProperties',
+          path: '/controlPanelProperties',
+          builder: (context, params) => ControlPanelPropertiesWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ControlPanelBooking',
+          path: '/controlPanelBooking',
+          builder: (context, params) => ControlPanelBookingWidget(
             pagename: params.getParam(
               'pagename',
               ParamType.String,
@@ -287,6 +309,7 @@ class FFParameters {
     ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
+    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -305,6 +328,7 @@ class FFParameters {
       type,
       isList,
       collectionNamePath: collectionNamePath,
+      structBuilder: structBuilder,
     );
   }
 }

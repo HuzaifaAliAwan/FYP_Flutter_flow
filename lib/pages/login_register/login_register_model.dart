@@ -12,88 +12,89 @@ class LoginRegisterModel extends FlutterFlowModel<LoginRegisterWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  late bool passwordVisibility1;
-  String? Function(BuildContext, String?)? textController2Validator;
+  // State field(s) for loginEmail widget.
+  FocusNode? loginEmailFocusNode;
+  TextEditingController? loginEmailTextController;
+  String? Function(BuildContext, String?)? loginEmailTextControllerValidator;
+  // State field(s) for LoginPassword widget.
+  FocusNode? loginPasswordFocusNode;
+  TextEditingController? loginPasswordTextController;
+  late bool loginPasswordVisibility;
+  String? Function(BuildContext, String?)? loginPasswordTextControllerValidator;
   // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode7;
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode8;
-  TextEditingController? textController8;
-  late bool passwordVisibility2;
-  String? Function(BuildContext, String?)? textController8Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode9;
-  TextEditingController? textController9;
-  late bool passwordVisibility3;
-  String? Function(BuildContext, String?)? textController9Validator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
+  // State field(s) for inputName widget.
+  FocusNode? inputNameFocusNode;
+  TextEditingController? inputNameTextController;
+  String? Function(BuildContext, String?)? inputNameTextControllerValidator;
+  // State field(s) for inputPhone widget.
+  FocusNode? inputPhoneFocusNode;
+  TextEditingController? inputPhoneTextController;
+  String? Function(BuildContext, String?)? inputPhoneTextControllerValidator;
+  // State field(s) for inputCnic widget.
+  FocusNode? inputCnicFocusNode;
+  TextEditingController? inputCnicTextController;
+  String? Function(BuildContext, String?)? inputCnicTextControllerValidator;
+  // State field(s) for inputAddress widget.
+  FocusNode? inputAddressFocusNode;
+  TextEditingController? inputAddressTextController;
+  String? Function(BuildContext, String?)? inputAddressTextControllerValidator;
+  // State field(s) for inputEmail widget.
+  FocusNode? inputEmailFocusNode;
+  TextEditingController? inputEmailTextController;
+  String? Function(BuildContext, String?)? inputEmailTextControllerValidator;
+  // State field(s) for inputPassword widget.
+  FocusNode? inputPasswordFocusNode;
+  TextEditingController? inputPasswordTextController;
+  late bool inputPasswordVisibility;
+  String? Function(BuildContext, String?)? inputPasswordTextControllerValidator;
+  // State field(s) for inputConfirmPassword widget.
+  FocusNode? inputConfirmPasswordFocusNode;
+  TextEditingController? inputConfirmPasswordTextController;
+  late bool inputConfirmPasswordVisibility;
+  String? Function(BuildContext, String?)?
+      inputConfirmPasswordTextControllerValidator;
+  // State field(s) for inputRole widget.
+  String? inputRoleValue;
+  FormFieldController<String>? inputRoleValueController;
 
   @override
   void initState(BuildContext context) {
-    passwordVisibility1 = false;
-    passwordVisibility2 = false;
-    passwordVisibility3 = false;
+    loginPasswordVisibility = false;
+    inputPasswordVisibility = false;
+    inputConfirmPasswordVisibility = false;
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    loginEmailFocusNode?.dispose();
+    loginEmailTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    loginPasswordFocusNode?.dispose();
+    loginPasswordTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    inputNameFocusNode?.dispose();
+    inputNameTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    inputPhoneFocusNode?.dispose();
+    inputPhoneTextController?.dispose();
 
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
+    inputCnicFocusNode?.dispose();
+    inputCnicTextController?.dispose();
 
-    textFieldFocusNode6?.dispose();
-    textController6?.dispose();
+    inputAddressFocusNode?.dispose();
+    inputAddressTextController?.dispose();
 
-    textFieldFocusNode7?.dispose();
-    textController7?.dispose();
+    inputEmailFocusNode?.dispose();
+    inputEmailTextController?.dispose();
 
-    textFieldFocusNode8?.dispose();
-    textController8?.dispose();
+    inputPasswordFocusNode?.dispose();
+    inputPasswordTextController?.dispose();
 
-    textFieldFocusNode9?.dispose();
-    textController9?.dispose();
+    inputConfirmPasswordFocusNode?.dispose();
+    inputConfirmPasswordTextController?.dispose();
   }
 }
