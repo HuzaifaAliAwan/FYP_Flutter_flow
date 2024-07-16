@@ -85,6 +85,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'HomePage')
               : HomePageWidget(
@@ -102,6 +103,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProfilePage',
           path: '/profilePage',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'ProfilePage')
               : ProfilePageWidget(
@@ -114,6 +116,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'searchProperty',
           path: '/searchProperty',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'searchProperty')
               : SearchPropertyWidget(
@@ -126,6 +129,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ConversationsPage',
           path: '/conversationsPage',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'ConversationsPage')
               : ConversationsPageWidget(
@@ -138,6 +142,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'MessagePage',
           path: '/messagePage',
+          requireAuth: true,
           builder: (context, params) => MessagePageWidget(
             pagename: params.getParam(
               'pagename',
@@ -148,6 +153,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ViewProperty',
           path: '/viewProperty',
+          requireAuth: true,
           builder: (context, params) => ViewPropertyWidget(
             pagename: params.getParam(
               'pagename',
@@ -158,6 +164,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ControlPanel',
           path: '/controlPanel',
+          requireAuth: true,
           builder: (context, params) => ControlPanelWidget(
             pagename: params.getParam(
               'pagename',
@@ -178,7 +185,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ControlPanelBooking',
           path: '/controlPanelBooking',
+          requireAuth: true,
           builder: (context, params) => ControlPanelBookingWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ControlPanelExtraServices',
+          path: '/controlPanelExtraServices',
+          requireAuth: true,
+          builder: (context, params) => ControlPanelExtraServicesWidget(
             pagename: params.getParam(
               'pagename',
               ParamType.String,

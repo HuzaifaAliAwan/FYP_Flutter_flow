@@ -14,3 +14,5 @@ export '/pages/control_panel_properties/control_panel_properties_widget.dart'
     show ControlPanelPropertiesWidget;
 export '/pages/control_panel_booking/control_panel_booking_widget.dart'
     show ControlPanelBookingWidget;
+export '/pages/control_panel_extra_services/control_panel_extra_services_widget.dart'
+    show ControlPanelExtraServicesWidget;

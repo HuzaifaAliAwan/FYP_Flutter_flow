@@ -621,6 +621,51 @@ class _ControlPanelWidgetState extends State<ControlPanelWidget> {
                     ),
                   ),
                 ),
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(
+                          'ControlPanelExtraServices',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 300),
+                            ),
+                          },
+                        );
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          const Icon(
+                            Icons.cleaning_services,
+                            color: Color(0xFF0C55C6),
+                            size: 50.0,
+                          ),
+                          Text(
+                            'Extra services',
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Roboto',
+                                      color: const Color(0xFF0C55C6),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                          ),
+                        ].divide(const SizedBox(height: 5.0)),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

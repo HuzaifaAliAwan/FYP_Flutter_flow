@@ -25,9 +25,15 @@ class ExtraServiceRecord extends FirestoreRecord {
   double get price => _price ?? 0.0;
   bool hasPrice() => _price != null;
 
+  // "userId" field.
+  DocumentReference? _userId;
+  DocumentReference? get userId => _userId;
+  bool hasUserId() => _userId != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _price = castToType<double>(snapshotData['price']);
+    _userId = snapshotData['userId'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -67,11 +73,13 @@ class ExtraServiceRecord extends FirestoreRecord {
 Map<String, dynamic> createExtraServiceRecordData({
   String? name,
   double? price,
+  DocumentReference? userId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'name': name,
       'price': price,
+      'userId': userId,
     }.withoutNulls,
   );
 
@@ -84,12 +92,14 @@ class ExtraServiceRecordDocumentEquality
 
   @override
   bool equals(ExtraServiceRecord? e1, ExtraServiceRecord? e2) {
-    return e1?.name == e2?.name && e1?.price == e2?.price;
+    return e1?.name == e2?.name &&
+        e1?.price == e2?.price &&
+        e1?.userId == e2?.userId;
   }
 
   @override
   int hash(ExtraServiceRecord? e) =>
-      const ListEquality().hash([e?.name, e?.price]);
+      const ListEquality().hash([e?.name, e?.price, e?.userId]);
 
   @override
   bool isValidKey(Object? o) => o is ExtraServiceRecord;

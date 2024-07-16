@@ -129,16 +129,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    width: 120.0,
-                                    height: 120.0,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      'https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg',
-                                      fit: BoxFit.cover,
+                                  AuthUserStreamWidget(
+                                    builder: (context) => Container(
+                                      width: 120.0,
+                                      height: 120.0,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        currentUserPhoto,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                   Align(
@@ -864,124 +866,131 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  SafeArea(
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 200.0,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: Image.asset(
-                                            'assets/images/pictureuploadbg.png',
-                                          ).image,
+                                  AuthUserStreamWidget(
+                                    builder: (context) => SafeArea(
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 200.0,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.network(
+                                              currentUserPhoto,
+                                            ).image,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            width: 2.0,
+                                          ),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          final selectedMedia =
-                                              await selectMediaWithSourceBottomSheet(
-                                            context: context,
-                                            maxWidth: 1000.00,
-                                            maxHeight: 1000.00,
-                                            imageQuality: 50,
-                                            allowPhoto: true,
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                            textColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            pickerFontFamily: 'Roboto',
-                                          );
-                                          if (selectedMedia != null &&
-                                              selectedMedia.every((m) =>
-                                                  validateFileFormat(
-                                                      m.storagePath,
-                                                      context))) {
-                                            setState(() =>
-                                                _model.isDataUploading = true);
-                                            var selectedUploadedFiles =
-                                                <FFUploadedFile>[];
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            final selectedMedia =
+                                                await selectMediaWithSourceBottomSheet(
+                                              context: context,
+                                              maxWidth: 1000.00,
+                                              maxHeight: 1000.00,
+                                              imageQuality: 50,
+                                              allowPhoto: true,
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              textColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              pickerFontFamily: 'Roboto',
+                                            );
+                                            if (selectedMedia != null &&
+                                                selectedMedia.every((m) =>
+                                                    validateFileFormat(
+                                                        m.storagePath,
+                                                        context))) {
+                                              setState(() => _model
+                                                  .isDataUploading = true);
+                                              var selectedUploadedFiles =
+                                                  <FFUploadedFile>[];
 
-                                            var downloadUrls = <String>[];
-                                            try {
-                                              selectedUploadedFiles =
-                                                  selectedMedia
-                                                      .map(
-                                                          (m) => FFUploadedFile(
-                                                                name: m
-                                                                    .storagePath
-                                                                    .split('/')
-                                                                    .last,
-                                                                bytes: m.bytes,
-                                                                height: m
-                                                                    .dimensions
-                                                                    ?.height,
-                                                                width: m
-                                                                    .dimensions
-                                                                    ?.width,
-                                                                blurHash:
-                                                                    m.blurHash,
-                                                              ))
-                                                      .toList();
+                                              var downloadUrls = <String>[];
+                                              try {
+                                                selectedUploadedFiles =
+                                                    selectedMedia
+                                                        .map((m) =>
+                                                            FFUploadedFile(
+                                                              name: m
+                                                                  .storagePath
+                                                                  .split('/')
+                                                                  .last,
+                                                              bytes: m.bytes,
+                                                              height: m
+                                                                  .dimensions
+                                                                  ?.height,
+                                                              width: m
+                                                                  .dimensions
+                                                                  ?.width,
+                                                              blurHash:
+                                                                  m.blurHash,
+                                                            ))
+                                                        .toList();
 
-                                              downloadUrls = (await Future.wait(
-                                                selectedMedia.map(
-                                                  (m) async => await uploadData(
-                                                      m.storagePath, m.bytes),
-                                                ),
-                                              ))
-                                                  .where((u) => u != null)
-                                                  .map((u) => u!)
-                                                  .toList();
-                                            } finally {
-                                              _model.isDataUploading = false;
+                                                downloadUrls =
+                                                    (await Future.wait(
+                                                  selectedMedia.map(
+                                                    (m) async =>
+                                                        await uploadData(
+                                                            m.storagePath,
+                                                            m.bytes),
+                                                  ),
+                                                ))
+                                                        .where((u) => u != null)
+                                                        .map((u) => u!)
+                                                        .toList();
+                                              } finally {
+                                                _model.isDataUploading = false;
+                                              }
+                                              if (selectedUploadedFiles
+                                                          .length ==
+                                                      selectedMedia.length &&
+                                                  downloadUrls.length ==
+                                                      selectedMedia.length) {
+                                                setState(() {
+                                                  _model.uploadedLocalFile =
+                                                      selectedUploadedFiles
+                                                          .first;
+                                                  _model.uploadedFileUrl =
+                                                      downloadUrls.first;
+                                                });
+                                              } else {
+                                                setState(() {});
+                                                return;
+                                              }
                                             }
-                                            if (selectedUploadedFiles.length ==
-                                                    selectedMedia.length &&
-                                                downloadUrls.length ==
-                                                    selectedMedia.length) {
-                                              setState(() {
-                                                _model.uploadedLocalFile =
-                                                    selectedUploadedFiles.first;
-                                                _model.uploadedFileUrl =
-                                                    downloadUrls.first;
-                                              });
-                                            } else {
-                                              setState(() {});
-                                              return;
-                                            }
-                                          }
-                                        },
-                                        child: Hero(
-                                          tag: _model.uploadedFileUrl,
-                                          transitionOnUserGestures: true,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              _model.uploadedFileUrl,
-                                              width: 300.0,
-                                              height: 200.0,
-                                              fit: BoxFit.scaleDown,
-                                              errorBuilder: (context, error,
-                                                      stackTrace) =>
-                                                  Image.asset(
-                                                'assets/images/error_image.png',
+                                          },
+                                          child: Hero(
+                                            tag: _model.uploadedFileUrl,
+                                            transitionOnUserGestures: true,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                _model.uploadedFileUrl,
                                                 width: 300.0,
                                                 height: 200.0,
                                                 fit: BoxFit.scaleDown,
+                                                errorBuilder: (context, error,
+                                                        stackTrace) =>
+                                                    Image.asset(
+                                                  'assets/images/error_image.png',
+                                                  width: 300.0,
+                                                  height: 200.0,
+                                                  fit: BoxFit.scaleDown,
+                                                ),
                                               ),
                                             ),
                                           ),
