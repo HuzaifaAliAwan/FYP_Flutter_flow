@@ -15,11 +15,6 @@ class BookingRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  bool hasId() => _id != null;
-
   // "propertyId" field.
   DocumentReference? _propertyId;
   DocumentReference? get propertyId => _propertyId;
@@ -46,7 +41,6 @@ class BookingRecord extends FirestoreRecord {
   bool hasNoOfGuests() => _noOfGuests != null;
 
   void _initializeFields() {
-    _id = snapshotData['id'] as String?;
     _propertyId = snapshotData['propertyId'] as DocumentReference?;
     _customerId = snapshotData['customerId'] as DocumentReference?;
     _checkInDate = snapshotData['checkInDate'] as DateTime?;
@@ -89,7 +83,6 @@ class BookingRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createBookingRecordData({
-  String? id,
   DocumentReference? propertyId,
   DocumentReference? customerId,
   DateTime? checkInDate,
@@ -98,7 +91,6 @@ Map<String, dynamic> createBookingRecordData({
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'propertyId': propertyId,
       'customerId': customerId,
       'checkInDate': checkInDate,
@@ -115,8 +107,7 @@ class BookingRecordDocumentEquality implements Equality<BookingRecord> {
 
   @override
   bool equals(BookingRecord? e1, BookingRecord? e2) {
-    return e1?.id == e2?.id &&
-        e1?.propertyId == e2?.propertyId &&
+    return e1?.propertyId == e2?.propertyId &&
         e1?.customerId == e2?.customerId &&
         e1?.checkInDate == e2?.checkInDate &&
         e1?.checkOutDate == e2?.checkOutDate &&
@@ -125,7 +116,6 @@ class BookingRecordDocumentEquality implements Equality<BookingRecord> {
 
   @override
   int hash(BookingRecord? e) => const ListEquality().hash([
-        e?.id,
         e?.propertyId,
         e?.customerId,
         e?.checkInDate,

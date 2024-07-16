@@ -21,9 +21,11 @@ class LoginRegisterModel extends FlutterFlowModel<LoginRegisterWidget> {
   TextEditingController? loginPasswordTextController;
   late bool loginPasswordVisibility;
   String? Function(BuildContext, String?)? loginPasswordTextControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for inputName widget.
   FocusNode? inputNameFocusNode;
   TextEditingController? inputNameTextController;

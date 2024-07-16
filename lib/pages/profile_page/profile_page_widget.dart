@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -36,25 +37,27 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
-    _model.nameTextController ??=
+    _model.formNameTextController ??=
         TextEditingController(text: currentUserDisplayName);
-    _model.nameFocusNode ??= FocusNode();
+    _model.formNameFocusNode ??= FocusNode();
 
-    _model.emailTextController ??=
+    _model.formEmailTextController ??=
         TextEditingController(text: currentUserEmail);
-    _model.emailFocusNode ??= FocusNode();
+    _model.formEmailFocusNode ??= FocusNode();
 
-    _model.addressTextController ??= TextEditingController(
+    _model.formAddressTextController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.address, ''));
-    _model.addressFocusNode ??= FocusNode();
+    _model.formAddressFocusNode ??= FocusNode();
 
-    _model.cnicTextController ??= TextEditingController(
+    _model.formCnicTextController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.cnic, ''));
-    _model.cnicFocusNode ??= FocusNode();
+    _model.formCnicFocusNode ??= FocusNode();
 
-    _model.contactTextController ??=
+    _model.formContactTextController ??=
         TextEditingController(text: currentPhoneNumber);
-    _model.contactFocusNode ??= FocusNode();
+    _model.formContactFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -937,12 +940,13 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                             AuthUserStreamWidget(
                                               builder: (context) =>
                                                   TextFormField(
-                                                controller:
-                                                    _model.nameTextController,
-                                                focusNode: _model.nameFocusNode,
+                                                controller: _model
+                                                    .formNameTextController,
+                                                focusNode:
+                                                    _model.formNameFocusNode,
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
-                                                  '_model.nameTextController',
+                                                  '_model.formNameTextController',
                                                   const Duration(milliseconds: 2000),
                                                   () => setState(() {}),
                                                 ),
@@ -1016,13 +1020,13 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             0.0),
                                                   ),
                                                   suffixIcon: _model
-                                                          .nameTextController!
+                                                          .formNameTextController!
                                                           .text
                                                           .isNotEmpty
                                                       ? InkWell(
                                                           onTap: () async {
                                                             _model
-                                                                .nameTextController
+                                                                .formNameTextController
                                                                 ?.clear();
                                                             setState(() {});
                                                           },
@@ -1041,17 +1045,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                 validator: _model
-                                                    .nameTextControllerValidator
+                                                    .formNameTextControllerValidator
                                                     .asValidator(context),
                                               ),
                                             ),
                                             TextFormField(
-                                              controller:
-                                                  _model.emailTextController,
-                                              focusNode: _model.emailFocusNode,
+                                              controller: _model
+                                                  .formEmailTextController,
+                                              focusNode:
+                                                  _model.formEmailFocusNode,
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
-                                                '_model.emailTextController',
+                                                '_model.formEmailTextController',
                                                 const Duration(milliseconds: 2000),
                                                 () => setState(() {}),
                                               ),
@@ -1120,13 +1125,13 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                           0.0),
                                                 ),
                                                 suffixIcon: _model
-                                                        .emailTextController!
+                                                        .formEmailTextController!
                                                         .text
                                                         .isNotEmpty
                                                     ? InkWell(
                                                         onTap: () async {
                                                           _model
-                                                              .emailTextController
+                                                              .formEmailTextController
                                                               ?.clear();
                                                           setState(() {});
                                                         },
@@ -1145,19 +1150,19 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         letterSpacing: 0.0,
                                                       ),
                                               validator: _model
-                                                  .emailTextControllerValidator
+                                                  .formEmailTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                             AuthUserStreamWidget(
                                               builder: (context) =>
                                                   TextFormField(
                                                 controller: _model
-                                                    .addressTextController,
+                                                    .formAddressTextController,
                                                 focusNode:
-                                                    _model.addressFocusNode,
+                                                    _model.formAddressFocusNode,
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
-                                                  '_model.addressTextController',
+                                                  '_model.formAddressTextController',
                                                   const Duration(milliseconds: 2000),
                                                   () => setState(() {}),
                                                 ),
@@ -1232,13 +1237,13 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             0.0),
                                                   ),
                                                   suffixIcon: _model
-                                                          .addressTextController!
+                                                          .formAddressTextController!
                                                           .text
                                                           .isNotEmpty
                                                       ? InkWell(
                                                           onTap: () async {
                                                             _model
-                                                                .addressTextController
+                                                                .formAddressTextController
                                                                 ?.clear();
                                                             setState(() {});
                                                           },
@@ -1257,19 +1262,20 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                 validator: _model
-                                                    .addressTextControllerValidator
+                                                    .formAddressTextControllerValidator
                                                     .asValidator(context),
                                               ),
                                             ),
                                             AuthUserStreamWidget(
                                               builder: (context) =>
                                                   TextFormField(
-                                                controller:
-                                                    _model.cnicTextController,
-                                                focusNode: _model.cnicFocusNode,
+                                                controller: _model
+                                                    .formCnicTextController,
+                                                focusNode:
+                                                    _model.formCnicFocusNode,
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
-                                                  '_model.cnicTextController',
+                                                  '_model.formCnicTextController',
                                                   const Duration(milliseconds: 2000),
                                                   () => setState(() {}),
                                                 ),
@@ -1343,13 +1349,13 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             0.0),
                                                   ),
                                                   suffixIcon: _model
-                                                          .cnicTextController!
+                                                          .formCnicTextController!
                                                           .text
                                                           .isNotEmpty
                                                       ? InkWell(
                                                           onTap: () async {
                                                             _model
-                                                                .cnicTextController
+                                                                .formCnicTextController
                                                                 ?.clear();
                                                             setState(() {});
                                                           },
@@ -1368,7 +1374,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                 validator: _model
-                                                    .cnicTextControllerValidator
+                                                    .formCnicTextControllerValidator
                                                     .asValidator(context),
                                               ),
                                             ),
@@ -1376,12 +1382,12 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                               builder: (context) =>
                                                   TextFormField(
                                                 controller: _model
-                                                    .contactTextController,
+                                                    .formContactTextController,
                                                 focusNode:
-                                                    _model.contactFocusNode,
+                                                    _model.formContactFocusNode,
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
-                                                  '_model.contactTextController',
+                                                  '_model.formContactTextController',
                                                   const Duration(milliseconds: 2000),
                                                   () => setState(() {}),
                                                 ),
@@ -1455,13 +1461,13 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             0.0),
                                                   ),
                                                   suffixIcon: _model
-                                                          .contactTextController!
+                                                          .formContactTextController!
                                                           .text
                                                           .isNotEmpty
                                                       ? InkWell(
                                                           onTap: () async {
                                                             _model
-                                                                .contactTextController
+                                                                .formContactTextController
                                                                 ?.clear();
                                                             setState(() {});
                                                           },
@@ -1480,7 +1486,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                 validator: _model
-                                                    .contactTextControllerValidator
+                                                    .formContactTextControllerValidator
                                                     .asValidator(context),
                                               ),
                                             ),
@@ -1496,6 +1502,33 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                     children: [
                                       FFButtonWidget(
                                         onPressed: () async {
+                                          await currentUserReference!.update({
+                                            ...createUsersRecordData(
+                                              email: _model
+                                                  .formEmailTextController.text,
+                                              displayName: _model
+                                                  .formNameTextController.text,
+                                              phoneNumber: _model
+                                                  .formContactTextController
+                                                  .text,
+                                              address: _model
+                                                  .formAddressTextController
+                                                  .text,
+                                              cnic: _model
+                                                  .formCnicTextController.text,
+                                              photoUrl: 'null',
+                                              role: valueOrDefault(
+                                                  currentUserDocument?.role,
+                                                  ''),
+                                              uid: currentUserUid,
+                                            ),
+                                            ...mapToFirestore(
+                                              {
+                                                'created_time': FieldValue
+                                                    .serverTimestamp(),
+                                              },
+                                            ),
+                                          });
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {

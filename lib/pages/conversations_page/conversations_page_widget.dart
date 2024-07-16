@@ -28,6 +28,8 @@ class _ConversationsPageWidgetState extends State<ConversationsPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ConversationsPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

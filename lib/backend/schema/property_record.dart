@@ -15,11 +15,6 @@ class PropertyRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  bool hasId() => _id != null;
-
   // "propertyOwnerId" field.
   DocumentReference? _propertyOwnerId;
   DocumentReference? get propertyOwnerId => _propertyOwnerId;
@@ -34,16 +29,6 @@ class PropertyRecord extends FirestoreRecord {
   String? _description;
   String get description => _description ?? '';
   bool hasDescription() => _description != null;
-
-  // "city" field.
-  String? _city;
-  String get city => _city ?? '';
-  bool hasCity() => _city != null;
-
-  // "location" field.
-  String? _location;
-  String get location => _location ?? '';
-  bool hasLocation() => _location != null;
 
   // "price" field.
   double? _price;
@@ -65,17 +50,20 @@ class PropertyRecord extends FirestoreRecord {
   List<DocumentReference> get extraServices => _extraServices ?? const [];
   bool hasExtraServices() => _extraServices != null;
 
+  // "address" field.
+  String? _address;
+  String get address => _address ?? '';
+  bool hasAddress() => _address != null;
+
   void _initializeFields() {
-    _id = snapshotData['id'] as String?;
     _propertyOwnerId = snapshotData['propertyOwnerId'] as DocumentReference?;
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
-    _city = snapshotData['city'] as String?;
-    _location = snapshotData['location'] as String?;
     _price = castToType<double>(snapshotData['price']);
     _available = snapshotData['available'] as bool?;
     _photos = getDataList(snapshotData['photos']);
     _extraServices = getDataList(snapshotData['extraServices']);
+    _address = snapshotData['address'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -113,25 +101,21 @@ class PropertyRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createPropertyRecordData({
-  String? id,
   DocumentReference? propertyOwnerId,
   String? name,
   String? description,
-  String? city,
-  String? location,
   double? price,
   bool? available,
+  String? address,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'propertyOwnerId': propertyOwnerId,
       'name': name,
       'description': description,
-      'city': city,
-      'location': location,
       'price': price,
       'available': available,
+      'address': address,
     }.withoutNulls,
   );
 
@@ -144,30 +128,26 @@ class PropertyRecordDocumentEquality implements Equality<PropertyRecord> {
   @override
   bool equals(PropertyRecord? e1, PropertyRecord? e2) {
     const listEquality = ListEquality();
-    return e1?.id == e2?.id &&
-        e1?.propertyOwnerId == e2?.propertyOwnerId &&
+    return e1?.propertyOwnerId == e2?.propertyOwnerId &&
         e1?.name == e2?.name &&
         e1?.description == e2?.description &&
-        e1?.city == e2?.city &&
-        e1?.location == e2?.location &&
         e1?.price == e2?.price &&
         e1?.available == e2?.available &&
         listEquality.equals(e1?.photos, e2?.photos) &&
-        listEquality.equals(e1?.extraServices, e2?.extraServices);
+        listEquality.equals(e1?.extraServices, e2?.extraServices) &&
+        e1?.address == e2?.address;
   }
 
   @override
   int hash(PropertyRecord? e) => const ListEquality().hash([
-        e?.id,
         e?.propertyOwnerId,
         e?.name,
         e?.description,
-        e?.city,
-        e?.location,
         e?.price,
         e?.available,
         e?.photos,
-        e?.extraServices
+        e?.extraServices,
+        e?.address
       ]);
 
   @override

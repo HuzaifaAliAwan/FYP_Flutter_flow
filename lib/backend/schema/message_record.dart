@@ -15,11 +15,6 @@ class MessageRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  bool hasId() => _id != null;
-
   // "message" field.
   String? _message;
   String get message => _message ?? '';
@@ -41,7 +36,6 @@ class MessageRecord extends FirestoreRecord {
   bool hasCreatedDate() => _createdDate != null;
 
   void _initializeFields() {
-    _id = snapshotData['id'] as String?;
     _message = snapshotData['message'] as String?;
     _senderId = snapshotData['senderId'] as DocumentReference?;
     _receiverId = snapshotData['receiverId'] as DocumentReference?;
@@ -83,7 +77,6 @@ class MessageRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createMessageRecordData({
-  String? id,
   String? message,
   DocumentReference? senderId,
   DocumentReference? receiverId,
@@ -91,7 +84,6 @@ Map<String, dynamic> createMessageRecordData({
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'message': message,
       'senderId': senderId,
       'receiverId': receiverId,
@@ -107,8 +99,7 @@ class MessageRecordDocumentEquality implements Equality<MessageRecord> {
 
   @override
   bool equals(MessageRecord? e1, MessageRecord? e2) {
-    return e1?.id == e2?.id &&
-        e1?.message == e2?.message &&
+    return e1?.message == e2?.message &&
         e1?.senderId == e2?.senderId &&
         e1?.receiverId == e2?.receiverId &&
         e1?.createdDate == e2?.createdDate;
@@ -116,7 +107,7 @@ class MessageRecordDocumentEquality implements Equality<MessageRecord> {
 
   @override
   int hash(MessageRecord? e) => const ListEquality()
-      .hash([e?.id, e?.message, e?.senderId, e?.receiverId, e?.createdDate]);
+      .hash([e?.message, e?.senderId, e?.receiverId, e?.createdDate]);
 
   @override
   bool isValidKey(Object? o) => o is MessageRecord;

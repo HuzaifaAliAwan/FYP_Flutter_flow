@@ -28,6 +28,8 @@ class _ControlPanelWidgetState extends State<ControlPanelWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ControlPanelModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

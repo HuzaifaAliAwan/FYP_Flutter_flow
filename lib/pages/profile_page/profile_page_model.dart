@@ -11,26 +11,26 @@ class ProfilePageModel extends FlutterFlowModel<ProfilePageWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // State field(s) for Name widget.
-  FocusNode? nameFocusNode;
-  TextEditingController? nameTextController;
-  String? Function(BuildContext, String?)? nameTextControllerValidator;
-  // State field(s) for email widget.
-  FocusNode? emailFocusNode;
-  TextEditingController? emailTextController;
-  String? Function(BuildContext, String?)? emailTextControllerValidator;
-  // State field(s) for address widget.
-  FocusNode? addressFocusNode;
-  TextEditingController? addressTextController;
-  String? Function(BuildContext, String?)? addressTextControllerValidator;
-  // State field(s) for cnic widget.
-  FocusNode? cnicFocusNode;
-  TextEditingController? cnicTextController;
-  String? Function(BuildContext, String?)? cnicTextControllerValidator;
-  // State field(s) for contact widget.
-  FocusNode? contactFocusNode;
-  TextEditingController? contactTextController;
-  String? Function(BuildContext, String?)? contactTextControllerValidator;
+  // State field(s) for FormName widget.
+  FocusNode? formNameFocusNode;
+  TextEditingController? formNameTextController;
+  String? Function(BuildContext, String?)? formNameTextControllerValidator;
+  // State field(s) for FormEmail widget.
+  FocusNode? formEmailFocusNode;
+  TextEditingController? formEmailTextController;
+  String? Function(BuildContext, String?)? formEmailTextControllerValidator;
+  // State field(s) for FormAddress widget.
+  FocusNode? formAddressFocusNode;
+  TextEditingController? formAddressTextController;
+  String? Function(BuildContext, String?)? formAddressTextControllerValidator;
+  // State field(s) for FormCnic widget.
+  FocusNode? formCnicFocusNode;
+  TextEditingController? formCnicTextController;
+  String? Function(BuildContext, String?)? formCnicTextControllerValidator;
+  // State field(s) for FormContact widget.
+  FocusNode? formContactFocusNode;
+  TextEditingController? formContactTextController;
+  String? Function(BuildContext, String?)? formContactTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -39,19 +39,19 @@ class ProfilePageModel extends FlutterFlowModel<ProfilePageWidget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
-    nameFocusNode?.dispose();
-    nameTextController?.dispose();
+    formNameFocusNode?.dispose();
+    formNameTextController?.dispose();
 
-    emailFocusNode?.dispose();
-    emailTextController?.dispose();
+    formEmailFocusNode?.dispose();
+    formEmailTextController?.dispose();
 
-    addressFocusNode?.dispose();
-    addressTextController?.dispose();
+    formAddressFocusNode?.dispose();
+    formAddressTextController?.dispose();
 
-    cnicFocusNode?.dispose();
-    cnicTextController?.dispose();
+    formCnicFocusNode?.dispose();
+    formCnicTextController?.dispose();
 
-    contactFocusNode?.dispose();
-    contactTextController?.dispose();
+    formContactFocusNode?.dispose();
+    formContactTextController?.dispose();
   }
 }

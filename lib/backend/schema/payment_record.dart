@@ -15,11 +15,6 @@ class PaymentRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  bool hasId() => _id != null;
-
   // "bookingId" field.
   DocumentReference? _bookingId;
   DocumentReference? get bookingId => _bookingId;
@@ -41,7 +36,6 @@ class PaymentRecord extends FirestoreRecord {
   bool hasPrice() => _price != null;
 
   void _initializeFields() {
-    _id = snapshotData['id'] as String?;
     _bookingId = snapshotData['bookingId'] as DocumentReference?;
     _paymentMode = snapshotData['paymentMode'] as String?;
     _paymentStatus = snapshotData['paymentStatus'] as String?;
@@ -83,7 +77,6 @@ class PaymentRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createPaymentRecordData({
-  String? id,
   DocumentReference? bookingId,
   String? paymentMode,
   String? paymentStatus,
@@ -91,7 +84,6 @@ Map<String, dynamic> createPaymentRecordData({
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'bookingId': bookingId,
       'paymentMode': paymentMode,
       'paymentStatus': paymentStatus,
@@ -107,8 +99,7 @@ class PaymentRecordDocumentEquality implements Equality<PaymentRecord> {
 
   @override
   bool equals(PaymentRecord? e1, PaymentRecord? e2) {
-    return e1?.id == e2?.id &&
-        e1?.bookingId == e2?.bookingId &&
+    return e1?.bookingId == e2?.bookingId &&
         e1?.paymentMode == e2?.paymentMode &&
         e1?.paymentStatus == e2?.paymentStatus &&
         e1?.price == e2?.price;
@@ -116,7 +107,7 @@ class PaymentRecordDocumentEquality implements Equality<PaymentRecord> {
 
   @override
   int hash(PaymentRecord? e) => const ListEquality()
-      .hash([e?.id, e?.bookingId, e?.paymentMode, e?.paymentStatus, e?.price]);
+      .hash([e?.bookingId, e?.paymentMode, e?.paymentStatus, e?.price]);
 
   @override
   bool isValidKey(Object? o) => o is PaymentRecord;

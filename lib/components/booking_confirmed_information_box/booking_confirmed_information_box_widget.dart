@@ -27,6 +27,8 @@ class _BookingConfirmedInformationBoxWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => BookingConfirmedInformationBoxModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

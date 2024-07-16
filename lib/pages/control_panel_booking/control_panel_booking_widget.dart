@@ -36,6 +36,7 @@ class _ControlPanelBookingWidgetState extends State<ControlPanelBookingWidget>
       length: 3,
       initialIndex: 1,
     )..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

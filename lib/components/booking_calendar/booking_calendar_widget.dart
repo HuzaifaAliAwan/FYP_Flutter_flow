@@ -27,6 +27,8 @@ class _BookingCalendarWidgetState extends State<BookingCalendarWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => BookingCalendarModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
