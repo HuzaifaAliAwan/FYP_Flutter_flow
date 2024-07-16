@@ -100,11 +100,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginRegisterWidget(),
         ),
         FFRoute(
-          name: 'verifyEmail',
-          path: '/verifyEmail',
-          builder: (context, params) => const VerifyEmailWidget(),
-        ),
-        FFRoute(
           name: 'ProfilePage',
           path: '/profilePage',
           builder: (context, params) => params.isEmpty
@@ -377,9 +372,13 @@ class FFRoute {
           final child = appStateNotifier.loading
               ? Container(
                   color: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/appIcon.png',
-                    fit: BoxFit.scaleDown,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/appIcon.png',
+                      width: 100.0,
+                      height: 100.0,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
                 )
               : page;

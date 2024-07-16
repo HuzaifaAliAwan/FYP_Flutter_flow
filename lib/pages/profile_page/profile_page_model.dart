@@ -11,6 +11,11 @@ class ProfilePageModel extends FlutterFlowModel<ProfilePageWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for FormName widget.
   FocusNode? formNameFocusNode;
   TextEditingController? formNameTextController;

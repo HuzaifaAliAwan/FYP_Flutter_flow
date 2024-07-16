@@ -2,7 +2,6 @@
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/login_register/login_register_widget.dart'
     show LoginRegisterWidget;
-export '/pages/verify_email/verify_email_widget.dart' show VerifyEmailWidget;
 export '/pages/profile_page/profile_page_widget.dart' show ProfilePageWidget;
 export '/pages/search_property/search_property_widget.dart'
     show SearchPropertyWidget;
