@@ -1081,6 +1081,19 @@ class _ControlPanelExtraServicesWidgetState
                                             );
                                           },
                                         );
+
+                                        context.pushNamed(
+                                          'ControlPanelExtraServices',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                            ),
+                                          },
+                                        );
                                       },
                                       text: 'Create Service',
                                       options: FFButtonOptions(

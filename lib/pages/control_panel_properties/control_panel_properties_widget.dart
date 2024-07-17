@@ -592,995 +592,1192 @@ class _ControlPanelPropertiesWidgetState
               top: true,
               child: Align(
                 alignment: const AlignmentDirectional(0.0, -1.0),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: const Alignment(0.0, 0),
-                      child: FlutterFlowButtonTabBar(
-                        useToggleButtonStyle: false,
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelSmall.override(
-                                  fontFamily: 'Roboto',
-                                  letterSpacing: 0.0,
-                                ),
-                        unselectedLabelStyle: const TextStyle(),
-                        labelColor: Colors.white,
-                        unselectedLabelColor: const Color(0xFF0C55C6),
-                        backgroundColor: const Color(0xFF0C55C6),
-                        unselectedBackgroundColor:
-                            FlutterFlowTheme.of(context).alternate,
-                        borderColor: const Color(0xFF0C55C6),
-                        unselectedBorderColor: const Color(0xFF0C55C6),
-                        borderWidth: 2.0,
-                        borderRadius: 8.0,
-                        elevation: 0.0,
-                        buttonMargin: const EdgeInsetsDirectional.fromSTEB(
-                            10.0, 0.0, 10.0, 0.0),
-                        padding: const EdgeInsets.all(6.0),
-                        tabs: const [
-                          Tab(
-                            text: 'Properties List',
-                          ),
-                          Tab(
-                            text: 'Add Property',
-                          ),
-                        ],
-                        controller: _model.tabBarController,
-                        onTap: (i) async {
-                          [() async {}, () async {}][i]();
-                        },
-                      ),
-                    ),
-                    Expanded(
-                      child: TabBarView(
-                        controller: _model.tabBarController,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 20.0, 20.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: TextFormField(
-                                          controller: _model.textController1,
-                                          focusNode: _model.textFieldFocusNode,
-                                          autofocus: false,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText: 'Search Property',
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Roboto',
-                                                letterSpacing: 0.0,
-                                              ),
-                                          validator: _model
-                                              .textController1Validator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
-                                    FlutterFlowIconButton(
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      icon: Icon(
-                                        Icons.search,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 24.0,
-                                      ),
-                                      onPressed: () {
-                                        print('IconButton pressed ...');
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 20.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      ListView(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Kalash Valley Located near Bus Stop\n1 masterbed - 1 bedroom',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        icon: Icon(
-                                                          Icons.edit,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
-                                                        },
-                                                      ),
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        icon: Icon(
-                                                          Icons.delete,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
-                                                        },
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 5.0)),
-                                                  ),
-                                                ],
-                                              ),
-                                              Opacity(
-                                                opacity: 0.8,
-                                                child: Divider(
-                                                  thickness: 2.0,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: const Alignment(0.0, 0),
+                        child: FlutterFlowButtonTabBar(
+                          useToggleButtonStyle: false,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelSmall.override(
+                                    fontFamily: 'Roboto',
+                                    letterSpacing: 0.0,
                                   ),
-                                ),
-                              ],
+                          unselectedLabelStyle: const TextStyle(),
+                          labelColor: Colors.white,
+                          unselectedLabelColor: const Color(0xFF0C55C6),
+                          backgroundColor: const Color(0xFF0C55C6),
+                          unselectedBackgroundColor:
+                              FlutterFlowTheme.of(context).alternate,
+                          borderColor: const Color(0xFF0C55C6),
+                          unselectedBorderColor: const Color(0xFF0C55C6),
+                          borderWidth: 2.0,
+                          borderRadius: 8.0,
+                          elevation: 0.0,
+                          buttonMargin: const EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 10.0, 0.0),
+                          padding: const EdgeInsets.all(6.0),
+                          tabs: const [
+                            Tab(
+                              text: 'Properties List',
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 20.0, 20.0, 0.0),
-                            child: SingleChildScrollView(
+                            Tab(
+                              text: 'Add Property',
+                            ),
+                          ],
+                          controller: _model.tabBarController,
+                          onTap: (i) async {
+                            [() async {}, () async {}][i]();
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          controller: _model.tabBarController,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 20.0, 20.0, 20.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Text(
-                                    'Enter Property Info',
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  TextFormField(
-                                    controller:
-                                        _model.inputPropertyNameTextController,
-                                    focusNode:
-                                        _model.inputPropertyNameFocusNode,
-                                    onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.inputPropertyNameTextController',
-                                      const Duration(milliseconds: 2000),
-                                      () => setState(() {}),
-                                    ),
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Property Name',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              10.0, 5.0, 10.0, 5.0),
-                                      suffixIcon: _model
-                                              .inputPropertyNameTextController!
-                                              .text
-                                              .isNotEmpty
-                                          ? InkWell(
-                                              onTap: () async {
-                                                _model
-                                                    .inputPropertyNameTextController
-                                                    ?.clear();
-                                                setState(() {});
-                                              },
-                                              child: const Icon(
-                                                Icons.clear,
-                                                size: 22,
-                                              ),
-                                            )
-                                          : null,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .inputPropertyNameTextControllerValidator
-                                        .asValidator(context),
-                                  ),
-                                  TextFormField(
-                                    controller: _model
-                                        .inputPropertyDescriptionTextController,
-                                    focusNode: _model
-                                        .inputPropertyDescriptionFocusNode,
-                                    onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.inputPropertyDescriptionTextController',
-                                      const Duration(milliseconds: 2000),
-                                      () => setState(() {}),
-                                    ),
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Description',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              10.0, 5.0, 10.0, 5.0),
-                                      suffixIcon: _model
-                                              .inputPropertyDescriptionTextController!
-                                              .text
-                                              .isNotEmpty
-                                          ? InkWell(
-                                              onTap: () async {
-                                                _model
-                                                    .inputPropertyDescriptionTextController
-                                                    ?.clear();
-                                                setState(() {});
-                                              },
-                                              child: const Icon(
-                                                Icons.clear,
-                                                size: 22,
-                                              ),
-                                            )
-                                          : null,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    minLines: 1,
-                                    validator: _model
-                                        .inputPropertyDescriptionTextControllerValidator
-                                        .asValidator(context),
-                                  ),
-                                  TextFormField(
-                                    controller:
-                                        _model.inputPropertyPriceTextController,
-                                    focusNode:
-                                        _model.inputPropertyPriceFocusNode,
-                                    onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.inputPropertyPriceTextController',
-                                      const Duration(milliseconds: 2000),
-                                      () => setState(() {}),
-                                    ),
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Price',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              10.0, 5.0, 10.0, 5.0),
-                                      suffixIcon: _model
-                                              .inputPropertyPriceTextController!
-                                              .text
-                                              .isNotEmpty
-                                          ? InkWell(
-                                              onTap: () async {
-                                                _model
-                                                    .inputPropertyPriceTextController
-                                                    ?.clear();
-                                                setState(() {});
-                                              },
-                                              child: const Icon(
-                                                Icons.clear,
-                                                size: 22,
-                                              ),
-                                            )
-                                          : null,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .inputPropertyPriceTextControllerValidator
-                                        .asValidator(context),
-                                  ),
-                                  TextFormField(
-                                    controller: _model
-                                        .inputPropertyAddressTextController,
-                                    focusNode:
-                                        _model.inputPropertyAddressFocusNode,
-                                    onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.inputPropertyAddressTextController',
-                                      const Duration(milliseconds: 2000),
-                                      () => setState(() {}),
-                                    ),
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Address',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              10.0, 5.0, 10.0, 5.0),
-                                      suffixIcon: _model
-                                              .inputPropertyAddressTextController!
-                                              .text
-                                              .isNotEmpty
-                                          ? InkWell(
-                                              onTap: () async {
-                                                _model
-                                                    .inputPropertyAddressTextController
-                                                    ?.clear();
-                                                setState(() {});
-                                              },
-                                              child: const Icon(
-                                                Icons.clear,
-                                                size: 22,
-                                              ),
-                                            )
-                                          : null,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .inputPropertyAddressTextControllerValidator
-                                        .asValidator(context),
-                                  ),
-                                  FlutterFlowDropDown<String>(
-                                    controller: _model
-                                            .inputPropertyAvailabilityValueController ??=
-                                        FormFieldController<String>(null),
-                                    options: const ['Available', 'Not Available'],
-                                    onChanged: (val) => setState(() => _model
-                                        .inputPropertyAvailabilityValue = val),
-                                    width: double.infinity,
-                                    height: 50.0,
-                                    searchHintTextStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              letterSpacing: 0.0,
-                                            ),
-                                    searchTextStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                              letterSpacing: 0.0,
-                                            ),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    hintText: 'Avalibility',
-                                    searchHintText: 'Search for an item...',
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    elevation: 2.0,
-                                    borderColor: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    borderWidth: 2.0,
-                                    borderRadius: 15.0,
-                                    margin: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 16.0, 4.0),
-                                    hidesUnderline: true,
-                                    isOverButton: true,
-                                    isSearchable: true,
-                                    isMultiSelect: false,
-                                  ),
-                                  StreamBuilder<List<ExtraServiceRecord>>(
-                                    stream: queryExtraServiceRecord(),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: SpinKitDualRing(
-                                              color:
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 8.0, 0.0),
+                                          child: TextFormField(
+                                            controller: _model.textController1,
+                                            focusNode:
+                                                _model.textFieldFocusNode,
+                                            autofocus: false,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelText: 'Search Property',
+                                              labelStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              size: 50.0,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<ExtraServiceRecord>
-                                          dropDownExtraServiceRecordList =
-                                          snapshot.data!;
-
-                                      return FlutterFlowDropDown<String>(
-                                        multiSelectController:
-                                            _model.dropDownValueController ??=
-                                                FormListFieldController<String>(
-                                                    null),
-                                        options: dropDownExtraServiceRecordList
-                                            .map((e) => e.name)
-                                            .toList(),
-                                        width: double.infinity,
-                                        height: 50.0,
-                                        searchHintTextStyle:
-                                            FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  letterSpacing: 0.0,
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  width: 2.0,
                                                 ),
-                                        searchTextStyle:
-                                            FlutterFlowTheme.of(context)
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Roboto',
                                                   letterSpacing: 0.0,
                                                 ),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintText: 'Extra Services',
-                                        searchHintText:
-                                            'Search for extra service ... ',
+                                            validator: _model
+                                                .textController1Validator
+                                                .asValidator(context),
+                                          ),
+                                        ),
+                                      ),
+                                      FlutterFlowIconButton(
+                                        borderRadius: 20.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 40.0,
                                         icon: Icon(
-                                          Icons.keyboard_arrow_down_rounded,
+                                          Icons.search,
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                              .primaryText,
                                           size: 24.0,
                                         ),
-                                        elevation: 2.0,
-                                        borderColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                        borderWidth: 2.0,
-                                        borderRadius: 15.0,
-                                        margin: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 4.0, 16.0, 4.0),
-                                        hidesUnderline: true,
-                                        isOverButton: true,
-                                        isSearchable: true,
-                                        isMultiSelect: true,
-                                        onMultiSelectChanged: (val) => setState(
-                                            () => _model.dropDownValue = val),
-                                      );
-                                    },
+                                        onPressed: () {
+                                          print('IconButton pressed ...');
+                                        },
+                                      ),
+                                    ],
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 20.0, 0.0, 0.0),
-                                    child: SafeArea(
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 200.0,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: Image.asset(
-                                              'assets/images/pictureuploadbg.png',
-                                            ).image,
+                                        0.0, 20.0, 0.0, 20.0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          StreamBuilder<List<PropertyRecord>>(
+                                            stream: queryPropertyRecord(
+                                              queryBuilder: (propertyRecord) =>
+                                                  propertyRecord.where(
+                                                'propertyOwnerId',
+                                                isEqualTo: currentUserReference,
+                                              ),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child: SpinKitDualRing(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 50.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                              List<PropertyRecord>
+                                                  listViewPropertyRecordList =
+                                                  snapshot.data!;
+
+                                              return ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount:
+                                                    listViewPropertyRecordList
+                                                        .length,
+                                                itemBuilder:
+                                                    (context, listViewIndex) {
+                                                  final listViewPropertyRecord =
+                                                      listViewPropertyRecordList[
+                                                          listViewIndex];
+                                                  return Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            listViewPropertyRecord
+                                                                .name,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              FlutterFlowIconButton(
+                                                                borderColor: Colors
+                                                                    .transparent,
+                                                                borderRadius:
+                                                                    20.0,
+                                                                borderWidth:
+                                                                    1.0,
+                                                                buttonSize:
+                                                                    40.0,
+                                                                icon: Icon(
+                                                                  Icons.edit,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'ControlPanelPropertiesEdit',
+                                                                    queryParameters:
+                                                                        {
+                                                                      'propertyId':
+                                                                          serializeParam(
+                                                                        listViewPropertyRecord
+                                                                            .reference,
+                                                                        ParamType
+                                                                            .DocumentReference,
+                                                                      ),
+                                                                      'propertyName':
+                                                                          serializeParam(
+                                                                        listViewPropertyRecord
+                                                                            .name,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                      'propertyDescription':
+                                                                          serializeParam(
+                                                                        listViewPropertyRecord
+                                                                            .description,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                      'propertyPrice':
+                                                                          serializeParam(
+                                                                        listViewPropertyRecord
+                                                                            .price
+                                                                            .toString(),
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                      'propertyAddress':
+                                                                          serializeParam(
+                                                                        listViewPropertyRecord
+                                                                            .address,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                    extra: <String,
+                                                                        dynamic>{
+                                                                      kTransitionInfoKey:
+                                                                          const TransitionInfo(
+                                                                        hasTransition:
+                                                                            true,
+                                                                        transitionType:
+                                                                            PageTransitionType.fade,
+                                                                        duration:
+                                                                            Duration(milliseconds: 300),
+                                                                      ),
+                                                                    },
+                                                                  );
+                                                                },
+                                                              ),
+                                                              FlutterFlowIconButton(
+                                                                borderColor: Colors
+                                                                    .transparent,
+                                                                borderRadius:
+                                                                    20.0,
+                                                                borderWidth:
+                                                                    1.0,
+                                                                buttonSize:
+                                                                    40.0,
+                                                                icon: Icon(
+                                                                  Icons.delete,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  var confirmDialogResponse =
+                                                                      await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: const Text('Delete Confirmation'),
+                                                                                content: const Text('This action cannot be undone. Are you sure you want to do it?'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: const Text('Cancel'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: const Text('Confirm'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                  if (confirmDialogResponse) {
+                                                                    await listViewPropertyRecord
+                                                                        .reference
+                                                                        .delete();
+                                                                    await showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              const Text('Delete Successful'),
+                                                                          content:
+                                                                              const Text('Property has been deleted successfully'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: const Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  } else {
+                                                                    await showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              const Text('Not Deleted'),
+                                                                          content:
+                                                                              const Text('Property has not been deleted.'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: const Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  }
+                                                                },
+                                                              ),
+                                                            ].divide(const SizedBox(
+                                                                width: 5.0)),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Opacity(
+                                                        opacity: 0.8,
+                                                        child: Divider(
+                                                          thickness: 2.0,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            },
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          border: Border.all(
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 20.0, 20.0, 0.0),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Enter Property Info',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    TextFormField(
+                                      controller: _model
+                                          .inputPropertyNameTextController,
+                                      focusNode:
+                                          _model.inputPropertyNameFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.inputPropertyNameTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'Property Name',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             width: 2.0,
                                           ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
                                         ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            // uploadPicturetoFirebase
-                                            final selectedMedia =
-                                                await selectMediaWithSourceBottomSheet(
-                                              context: context,
-                                              maxWidth: 1000.00,
-                                              maxHeight: 1000.00,
-                                              imageQuality: 49,
-                                              allowPhoto: true,
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              textColor:
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                10.0, 5.0, 10.0, 5.0),
+                                        suffixIcon: _model
+                                                .inputPropertyNameTextController!
+                                                .text
+                                                .isNotEmpty
+                                            ? InkWell(
+                                                onTap: () async {
+                                                  _model
+                                                      .inputPropertyNameTextController
+                                                      ?.clear();
+                                                  setState(() {});
+                                                },
+                                                child: const Icon(
+                                                  Icons.clear,
+                                                  size: 22,
+                                                ),
+                                              )
+                                            : null,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      validator: _model
+                                          .inputPropertyNameTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                    TextFormField(
+                                      controller: _model
+                                          .inputPropertyDescriptionTextController,
+                                      focusNode: _model
+                                          .inputPropertyDescriptionFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.inputPropertyDescriptionTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'Description',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                10.0, 5.0, 10.0, 5.0),
+                                        suffixIcon: _model
+                                                .inputPropertyDescriptionTextController!
+                                                .text
+                                                .isNotEmpty
+                                            ? InkWell(
+                                                onTap: () async {
+                                                  _model
+                                                      .inputPropertyDescriptionTextController
+                                                      ?.clear();
+                                                  setState(() {});
+                                                },
+                                                child: const Icon(
+                                                  Icons.clear,
+                                                  size: 22,
+                                                ),
+                                              )
+                                            : null,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      minLines: 1,
+                                      validator: _model
+                                          .inputPropertyDescriptionTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                    TextFormField(
+                                      controller: _model
+                                          .inputPropertyPriceTextController,
+                                      focusNode:
+                                          _model.inputPropertyPriceFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.inputPropertyPriceTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'Price',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                10.0, 5.0, 10.0, 5.0),
+                                        suffixIcon: _model
+                                                .inputPropertyPriceTextController!
+                                                .text
+                                                .isNotEmpty
+                                            ? InkWell(
+                                                onTap: () async {
+                                                  _model
+                                                      .inputPropertyPriceTextController
+                                                      ?.clear();
+                                                  setState(() {});
+                                                },
+                                                child: const Icon(
+                                                  Icons.clear,
+                                                  size: 22,
+                                                ),
+                                              )
+                                            : null,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      validator: _model
+                                          .inputPropertyPriceTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                    TextFormField(
+                                      controller: _model
+                                          .inputPropertyAddressTextController,
+                                      focusNode:
+                                          _model.inputPropertyAddressFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.inputPropertyAddressTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'Address',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                10.0, 5.0, 10.0, 5.0),
+                                        suffixIcon: _model
+                                                .inputPropertyAddressTextController!
+                                                .text
+                                                .isNotEmpty
+                                            ? InkWell(
+                                                onTap: () async {
+                                                  _model
+                                                      .inputPropertyAddressTextController
+                                                      ?.clear();
+                                                  setState(() {});
+                                                },
+                                                child: const Icon(
+                                                  Icons.clear,
+                                                  size: 22,
+                                                ),
+                                              )
+                                            : null,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      validator: _model
+                                          .inputPropertyAddressTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                    FlutterFlowDropDown<String>(
+                                      controller: _model
+                                              .inputPropertyAvailabilityValueController ??=
+                                          FormFieldController<String>(null),
+                                      options: const ['Available', 'Not Available'],
+                                      onChanged: (val) => setState(() => _model
+                                              .inputPropertyAvailabilityValue =
+                                          val),
+                                      width: double.infinity,
+                                      height: 50.0,
+                                      searchHintTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                letterSpacing: 0.0,
+                                              ),
+                                      searchTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                                letterSpacing: 0.0,
+                                              ),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'Avalibility',
+                                      searchHintText: 'Search for an item...',
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      elevation: 2.0,
+                                      borderColor: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      borderWidth: 2.0,
+                                      borderRadius: 15.0,
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 4.0, 16.0, 4.0),
+                                      hidesUnderline: true,
+                                      isOverButton: true,
+                                      isSearchable: true,
+                                      isMultiSelect: false,
+                                    ),
+                                    StreamBuilder<List<ExtraServiceRecord>>(
+                                      stream: queryExtraServiceRecord(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: SpinKitDualRing(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 50.0,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<ExtraServiceRecord>
+                                            dropDownExtraServiceRecordList =
+                                            snapshot.data!;
+
+                                        return FlutterFlowDropDown<String>(
+                                          multiSelectController: _model
+                                                  .dropDownValueController ??=
+                                              FormListFieldController<String>(
+                                                  null),
+                                          options:
+                                              dropDownExtraServiceRecordList
+                                                  .map((e) => e.name)
+                                                  .toList(),
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          searchHintTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          searchTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Roboto',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          hintText: 'Extra Services',
+                                          searchHintText:
+                                              'Search for extra service ... ',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                          elevation: 2.0,
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                          borderWidth: 2.0,
+                                          borderRadius: 15.0,
+                                          margin:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 4.0, 16.0, 4.0),
+                                          hidesUnderline: true,
+                                          isOverButton: true,
+                                          isSearchable: true,
+                                          isMultiSelect: true,
+                                          onMultiSelectChanged: (val) =>
+                                              setState(() =>
+                                                  _model.dropDownValue = val),
+                                        );
+                                      },
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 20.0, 0.0, 0.0),
+                                      child: SafeArea(
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 200.0,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: Image.asset(
+                                                'assets/images/pictureuploadbg.png',
+                                              ).image,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            border: Border.all(
+                                              color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
-                                              pickerFontFamily: 'Roboto',
-                                            );
-                                            if (selectedMedia != null &&
-                                                selectedMedia.every((m) =>
-                                                    validateFileFormat(
-                                                        m.storagePath,
-                                                        context))) {
-                                              setState(() => _model
-                                                  .isDataUploading = true);
-                                              var selectedUploadedFiles =
-                                                  <FFUploadedFile>[];
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              // uploadPicturetoFirebase
+                                              final selectedMedia =
+                                                  await selectMediaWithSourceBottomSheet(
+                                                context: context,
+                                                maxWidth: 1000.00,
+                                                maxHeight: 1000.00,
+                                                imageQuality: 49,
+                                                allowPhoto: true,
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                textColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                pickerFontFamily: 'Roboto',
+                                              );
+                                              if (selectedMedia != null &&
+                                                  selectedMedia.every((m) =>
+                                                      validateFileFormat(
+                                                          m.storagePath,
+                                                          context))) {
+                                                setState(() => _model
+                                                    .isDataUploading = true);
+                                                var selectedUploadedFiles =
+                                                    <FFUploadedFile>[];
 
-                                              var downloadUrls = <String>[];
-                                              try {
-                                                selectedUploadedFiles =
-                                                    selectedMedia
-                                                        .map((m) =>
-                                                            FFUploadedFile(
-                                                              name: m
-                                                                  .storagePath
-                                                                  .split('/')
-                                                                  .last,
-                                                              bytes: m.bytes,
-                                                              height: m
-                                                                  .dimensions
-                                                                  ?.height,
-                                                              width: m
-                                                                  .dimensions
-                                                                  ?.width,
-                                                              blurHash:
-                                                                  m.blurHash,
-                                                            ))
-                                                        .toList();
+                                                var downloadUrls = <String>[];
+                                                try {
+                                                  selectedUploadedFiles =
+                                                      selectedMedia
+                                                          .map((m) =>
+                                                              FFUploadedFile(
+                                                                name: m
+                                                                    .storagePath
+                                                                    .split('/')
+                                                                    .last,
+                                                                bytes: m.bytes,
+                                                                height: m
+                                                                    .dimensions
+                                                                    ?.height,
+                                                                width: m
+                                                                    .dimensions
+                                                                    ?.width,
+                                                                blurHash:
+                                                                    m.blurHash,
+                                                              ))
+                                                          .toList();
 
-                                                downloadUrls =
-                                                    (await Future.wait(
-                                                  selectedMedia.map(
-                                                    (m) async =>
-                                                        await uploadData(
-                                                            m.storagePath,
-                                                            m.bytes),
-                                                  ),
-                                                ))
-                                                        .where((u) => u != null)
-                                                        .map((u) => u!)
-                                                        .toList();
-                                              } finally {
-                                                _model.isDataUploading = false;
+                                                  downloadUrls =
+                                                      (await Future.wait(
+                                                    selectedMedia.map(
+                                                      (m) async =>
+                                                          await uploadData(
+                                                              m.storagePath,
+                                                              m.bytes),
+                                                    ),
+                                                  ))
+                                                          .where(
+                                                              (u) => u != null)
+                                                          .map((u) => u!)
+                                                          .toList();
+                                                } finally {
+                                                  _model.isDataUploading =
+                                                      false;
+                                                }
+                                                if (selectedUploadedFiles
+                                                            .length ==
+                                                        selectedMedia.length &&
+                                                    downloadUrls.length ==
+                                                        selectedMedia.length) {
+                                                  setState(() {
+                                                    _model.uploadedLocalFile =
+                                                        selectedUploadedFiles
+                                                            .first;
+                                                    _model.uploadedFileUrl =
+                                                        downloadUrls.first;
+                                                  });
+                                                } else {
+                                                  setState(() {});
+                                                  return;
+                                                }
                                               }
-                                              if (selectedUploadedFiles
-                                                          .length ==
-                                                      selectedMedia.length &&
-                                                  downloadUrls.length ==
-                                                      selectedMedia.length) {
-                                                setState(() {
-                                                  _model.uploadedLocalFile =
-                                                      selectedUploadedFiles
-                                                          .first;
-                                                  _model.uploadedFileUrl =
-                                                      downloadUrls.first;
-                                                });
-                                              } else {
-                                                setState(() {});
-                                                return;
-                                              }
-                                            }
-                                          },
-                                          child: Hero(
-                                            tag: _model.uploadedFileUrl,
-                                            transitionOnUserGestures: true,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                _model.uploadedFileUrl,
-                                                width: 300.0,
-                                                height: 200.0,
-                                                fit: BoxFit.contain,
-                                                alignment: const Alignment(0.0, 0.0),
+                                            },
+                                            child: Hero(
+                                              tag: _model.uploadedFileUrl,
+                                              transitionOnUserGestures: true,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  _model.uploadedFileUrl,
+                                                  width: 300.0,
+                                                  height: 200.0,
+                                                  fit: BoxFit.contain,
+                                                  alignment:
+                                                      const Alignment(0.0, 0.0),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      await PropertyRecord.collection
-                                          .doc()
-                                          .set({
-                                        ...createPropertyRecordData(
-                                          propertyOwnerId: currentUserReference,
-                                          name: _model
-                                              .inputPropertyNameTextController
-                                              .text,
-                                          description: _model
-                                              .inputPropertyDescriptionTextController
-                                              .text,
-                                          price: double.tryParse(_model
-                                              .inputPropertyPriceTextController
-                                              .text),
-                                          available: _model
-                                                      .inputPropertyAvailabilityValue !=
-                                                  null &&
-                                              _model.inputPropertyAvailabilityValue !=
-                                                  '',
-                                          address: _model
-                                              .inputPropertyAddressTextController
-                                              .text,
-                                          photos: _model.uploadedFileUrl,
-                                        ),
-                                        ...mapToFirestore(
-                                          {
-                                            'extraServices':
-                                                controlPanelPropertiesExtraServiceRecordList
-                                                    .map((e) => e.reference)
-                                                    .toList(),
-                                          },
-                                        ),
-                                      });
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('PropertyAdded'),
-                                            content: const Text(
-                                                'The property has been added'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text('Ok'),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 20.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          await PropertyRecord.collection
+                                              .doc()
+                                              .set({
+                                            ...createPropertyRecordData(
+                                              propertyOwnerId:
+                                                  currentUserReference,
+                                              name: _model
+                                                  .inputPropertyNameTextController
+                                                  .text,
+                                              description: _model
+                                                  .inputPropertyDescriptionTextController
+                                                  .text,
+                                              price: double.tryParse(_model
+                                                  .inputPropertyPriceTextController
+                                                  .text),
+                                              available: _model
+                                                          .inputPropertyAvailabilityValue !=
+                                                      null &&
+                                                  _model.inputPropertyAvailabilityValue !=
+                                                      '',
+                                              address: _model
+                                                  .inputPropertyAddressTextController
+                                                  .text,
+                                              photos: _model.uploadedFileUrl,
+                                            ),
+                                            ...mapToFirestore(
+                                              {
+                                                'extraServices':
+                                                    controlPanelPropertiesExtraServiceRecordList
+                                                        .map((e) => e.reference)
+                                                        .toList(),
+                                              },
+                                            ),
+                                          });
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: const Text('PropertyAdded'),
+                                                content: const Text(
+                                                    'The property has been added'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+
+                                          context.goNamed(
+                                            'ControlPanelProperties',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 300),
                                               ),
-                                            ],
+                                            },
                                           );
                                         },
-                                      );
-
-                                      context.goNamed(
-                                        'ControlPanelProperties',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration:
-                                                Duration(milliseconds: 300),
+                                        text: 'Add Property',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: const Color(0xFF0080FF),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
                                           ),
-                                        },
-                                      );
-                                    },
-                                    text: 'Add Property',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: const Color(0xFF0080FF),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                  ),
-                                ].divide(const SizedBox(height: 20.0)),
+                                  ].divide(const SizedBox(height: 20.0)),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

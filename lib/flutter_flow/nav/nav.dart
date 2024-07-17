@@ -217,6 +217,35 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               collectionNamePath: ['extraService'],
             ),
           ),
+        ),
+        FFRoute(
+          name: 'ControlPanelPropertiesEdit',
+          path: '/controlPanelPropertiesEdit',
+          requireAuth: true,
+          builder: (context, params) => ControlPanelPropertiesEditWidget(
+            propertyId: params.getParam(
+              'propertyId',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['property'],
+            ),
+            propertyName: params.getParam(
+              'propertyName',
+              ParamType.String,
+            ),
+            propertyDescription: params.getParam(
+              'propertyDescription',
+              ParamType.String,
+            ),
+            propertyPrice: params.getParam(
+              'propertyPrice',
+              ParamType.String,
+            ),
+            propertyAddress: params.getParam(
+              'propertyAddress',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

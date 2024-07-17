@@ -18,3 +18,5 @@ export '/pages/control_panel_extra_services/control_panel_extra_services_widget.
     show ControlPanelExtraServicesWidget;
 export '/pages/control_panel_extra_service_edit/control_panel_extra_service_edit_widget.dart'
     show ControlPanelExtraServiceEditWidget;
+export '/pages/control_panel_properties_edit/control_panel_properties_edit_widget.dart'
+    show ControlPanelPropertiesEditWidget;
