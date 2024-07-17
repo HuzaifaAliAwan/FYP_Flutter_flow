@@ -16,3 +16,5 @@ export '/pages/control_panel_booking/control_panel_booking_widget.dart'
     show ControlPanelBookingWidget;
 export '/pages/control_panel_extra_services/control_panel_extra_services_widget.dart'
     show ControlPanelExtraServicesWidget;
+export '/pages/control_panel_extra_service_edit/control_panel_extra_service_edit_widget.dart'
+    show ControlPanelExtraServiceEditWidget;

@@ -646,46 +646,50 @@ class _ControlPanelExtraServicesWidgetState
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      listViewExtraServiceRecord
-                                                          .name,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelLarge
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            fontSize: 16.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
+                                                child: SingleChildScrollView(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        listViewExtraServiceRecord
+                                                            .name,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .labelLarge
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                            Flexible(
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    listViewExtraServiceRecord
-                                                        .price
-                                                        .toString(),
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  listViewExtraServiceRecord
+                                                      .price
+                                                      .toString(),
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
                                             ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -701,9 +705,32 @@ class _ControlPanelExtraServicesWidgetState
                                                         .primaryText,
                                                     size: 24.0,
                                                   ),
-                                                  onPressed: () {
-                                                    print(
-                                                        'EditButton pressed ...');
+                                                  showLoadingIndicator: true,
+                                                  onPressed: () async {
+                                                    context.pushNamed(
+                                                      'ControlPanelExtraServiceEdit',
+                                                      queryParameters: {
+                                                        'extraServiceId':
+                                                            serializeParam(
+                                                          listViewExtraServiceRecord
+                                                              .reference,
+                                                          ParamType
+                                                              .DocumentReference,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                        ),
+                                                      },
+                                                    );
                                                   },
                                                 ),
                                                 FlutterFlowIconButton(
@@ -719,6 +746,7 @@ class _ControlPanelExtraServicesWidgetState
                                                         .primaryText,
                                                     size: 24.0,
                                                   ),
+                                                  showLoadingIndicator: true,
                                                   onPressed: () async {
                                                     // User Confirmation
                                                     var confirmDialogResponse =

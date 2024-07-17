@@ -40,11 +40,6 @@ class PropertyRecord extends FirestoreRecord {
   bool get available => _available ?? false;
   bool hasAvailable() => _available != null;
 
-  // "photos" field.
-  List<String>? _photos;
-  List<String> get photos => _photos ?? const [];
-  bool hasPhotos() => _photos != null;
-
   // "extraServices" field.
   List<DocumentReference>? _extraServices;
   List<DocumentReference> get extraServices => _extraServices ?? const [];
@@ -55,15 +50,20 @@ class PropertyRecord extends FirestoreRecord {
   String get address => _address ?? '';
   bool hasAddress() => _address != null;
 
+  // "photos" field.
+  String? _photos;
+  String get photos => _photos ?? '';
+  bool hasPhotos() => _photos != null;
+
   void _initializeFields() {
     _propertyOwnerId = snapshotData['propertyOwnerId'] as DocumentReference?;
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
     _price = castToType<double>(snapshotData['price']);
     _available = snapshotData['available'] as bool?;
-    _photos = getDataList(snapshotData['photos']);
     _extraServices = getDataList(snapshotData['extraServices']);
     _address = snapshotData['address'] as String?;
+    _photos = snapshotData['photos'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -107,6 +107,7 @@ Map<String, dynamic> createPropertyRecordData({
   double? price,
   bool? available,
   String? address,
+  String? photos,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -116,6 +117,7 @@ Map<String, dynamic> createPropertyRecordData({
       'price': price,
       'available': available,
       'address': address,
+      'photos': photos,
     }.withoutNulls,
   );
 
@@ -133,9 +135,9 @@ class PropertyRecordDocumentEquality implements Equality<PropertyRecord> {
         e1?.description == e2?.description &&
         e1?.price == e2?.price &&
         e1?.available == e2?.available &&
-        listEquality.equals(e1?.photos, e2?.photos) &&
         listEquality.equals(e1?.extraServices, e2?.extraServices) &&
-        e1?.address == e2?.address;
+        e1?.address == e2?.address &&
+        e1?.photos == e2?.photos;
   }
 
   @override
@@ -145,9 +147,9 @@ class PropertyRecordDocumentEquality implements Equality<PropertyRecord> {
         e?.description,
         e?.price,
         e?.available,
-        e?.photos,
         e?.extraServices,
-        e?.address
+        e?.address,
+        e?.photos
       ]);
 
   @override

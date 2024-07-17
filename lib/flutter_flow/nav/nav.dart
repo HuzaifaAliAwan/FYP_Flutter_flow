@@ -175,6 +175,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ControlPanelProperties',
           path: '/controlPanelProperties',
+          requireAuth: true,
           builder: (context, params) => ControlPanelPropertiesWidget(
             pagename: params.getParam(
               'pagename',
@@ -201,6 +202,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             pagename: params.getParam(
               'pagename',
               ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ControlPanelExtraServiceEdit',
+          path: '/controlPanelExtraServiceEdit',
+          requireAuth: true,
+          builder: (context, params) => ControlPanelExtraServiceEditWidget(
+            extraServiceId: params.getParam(
+              'extraServiceId',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['extraService'],
             ),
           ),
         )
