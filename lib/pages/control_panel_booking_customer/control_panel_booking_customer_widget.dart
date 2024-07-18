@@ -604,114 +604,161 @@ class _ControlPanelBookingCustomerWidgetState
                           child: TabBarView(
                             controller: _model.tabBarController,
                             children: [
-                              StreamBuilder<List<BookingRecord>>(
-                                stream: queryBookingRecord(
-                                  queryBuilder: (bookingRecord) => bookingRecord
-                                      .where(
-                                        'activeStatus',
-                                        isEqualTo: true,
-                                      )
-                                      .where(
-                                        'reqApproved',
-                                        isEqualTo: true,
-                                      )
-                                      .where(
-                                        'customerId',
-                                        isEqualTo: currentUserReference,
-                                      ),
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: SpinKitDualRing(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 50.0,
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: StreamBuilder<List<BookingRecord>>(
+                                  stream: queryBookingRecord(
+                                    queryBuilder: (bookingRecord) =>
+                                        bookingRecord
+                                            .where(
+                                              'activeStatus',
+                                              isEqualTo: true,
+                                            )
+                                            .where(
+                                              'reqApproved',
+                                              isEqualTo: true,
+                                            )
+                                            .where(
+                                              'customerId',
+                                              isEqualTo: currentUserReference,
+                                            ),
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: SpinKitDualRing(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 50.0,
+                                          ),
                                         ),
+                                      );
+                                    }
+                                    List<BookingRecord>
+                                        columnBookingRecordList =
+                                        snapshot.data!;
+
+                                    return SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: List.generate(
+                                            columnBookingRecordList.length,
+                                            (columnIndex) {
+                                          final columnBookingRecord =
+                                              columnBookingRecordList[
+                                                  columnIndex];
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              StreamBuilder<PropertyRecord>(
+                                                stream:
+                                                    PropertyRecord.getDocument(
+                                                        columnBookingRecord
+                                                            .propertyId!),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        child: SpinKitDualRing(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          size: 50.0,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+
+                                                  final rowPropertyRecord =
+                                                      snapshot.data!;
+
+                                                  return Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            rowPropertyRecord
+                                                                .name,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            dateTimeFormat(
+                                                                'MMMMEEEEd',
+                                                                columnBookingRecord
+                                                                    .checkInDate!),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            dateTimeFormat(
+                                                                'MMMMEEEEd',
+                                                                columnBookingRecord
+                                                                    .checkOutDate!),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ),
+                                              Opacity(
+                                                opacity: 0.8,
+                                                child: Divider(
+                                                  thickness: 2.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        }).divide(const SizedBox(height: 10.0)),
                                       ),
                                     );
-                                  }
-                                  List<BookingRecord> columnBookingRecordList =
-                                      snapshot.data!;
-
-                                  return SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(
-                                          columnBookingRecordList.length,
-                                          (columnIndex) {
-                                        final columnBookingRecord =
-                                            columnBookingRecordList[
-                                                columnIndex];
-                                        return Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            StreamBuilder<PropertyRecord>(
-                                              stream:
-                                                  PropertyRecord.getDocument(
-                                                      columnBookingRecord
-                                                          .propertyId!),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child: SpinKitDualRing(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 50.0,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-
-                                                final rowPropertyRecord =
-                                                    snapshot.data!;
-
-                                                return Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      rowPropertyRecord.name,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelLarge
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ),
-                                            Opacity(
-                                              opacity: 0.8,
-                                              child: Divider(
-                                                thickness: 2.0,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                              ),
-                                            ),
-                                          ],
-                                        );
-                                      }).divide(const SizedBox(height: 10.0)),
-                                    ),
-                                  );
-                                },
+                                  },
+                                ),
                               ),
                               StreamBuilder<List<BookingRecord>>(
                                 stream: queryBookingRecord(
@@ -792,15 +839,57 @@ class _ControlPanelBookingCustomerWidgetState
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text(
-                                                      rowPropertyRecord.name,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelLarge
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          rowPropertyRecord
+                                                              .name,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          dateTimeFormat(
+                                                              'MMMMEEEEd',
+                                                              columnBookingRecord
+                                                                  .checkInDate!),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          dateTimeFormat(
+                                                              'MMMMEEEEd',
+                                                              columnBookingRecord
+                                                                  .checkOutDate!),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
                                                     Row(
                                                       mainAxisSize:

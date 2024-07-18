@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/booking_confirmed_information_box/booking_confirmed_information_box_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -277,52 +278,72 @@ class _BookingCalendarWidgetState extends State<BookingCalendarWidget>
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      // CreatePropertyBooking
+                  Builder(
+                    builder: (context) => FFButtonWidget(
+                      onPressed: () async {
+                        // CreatePropertyBooking
 
-                      await BookingRecord.collection
-                          .doc()
-                          .set(createBookingRecordData(
-                            propertyId: widget.propertyId,
-                            customerId: currentUserReference,
-                            checkInDate:
-                                _model.inputCheckinDateSelectedDay?.start,
-                            checkOutDate:
-                                _model.inputCheckoutDateSelectedDay?.end,
-                            noOfGuests: _model.dropDownValue,
-                            activeStatus: true,
-                            reqApproved: false,
-                            propertyOwnerId: widget.propertyOwnerId,
-                            showInHistoryPropertyOwner: false,
-                            showInHistoryCustomer: false,
-                          ));
+                        await BookingRecord.collection
+                            .doc()
+                            .set(createBookingRecordData(
+                              propertyId: widget.propertyId,
+                              customerId: currentUserReference,
+                              checkInDate:
+                                  _model.inputCheckinDateSelectedDay?.start,
+                              checkOutDate:
+                                  _model.inputCheckoutDateSelectedDay?.end,
+                              noOfGuests: _model.dropDownValue,
+                              activeStatus: true,
+                              reqApproved: false,
+                              propertyOwnerId: widget.propertyOwnerId,
+                              showInHistoryPropertyOwner: false,
+                              showInHistoryCustomer: false,
+                            ));
 
-                      await widget.propertyId!.update(createPropertyRecordData(
-                        available: false,
-                      ));
-                      Navigator.pop(context);
-                    },
-                    text: 'Accept',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF0080FF),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Inter',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
+                        await widget.propertyId!
+                            .update(createPropertyRecordData(
+                          available: false,
+                        ));
+                        await showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: const AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              child: SizedBox(
+                                width: MediaQuery.sizeOf(context).width * 0.8,
+                                child: const BookingConfirmedInformationBoxWidget(),
                               ),
-                      elevation: 3.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                            );
+                          },
+                        ).then((value) => setState(() {}));
+
+                        Navigator.pop(context);
+                      },
+                      text: 'Accept',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF0080FF),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 3.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                 ],
