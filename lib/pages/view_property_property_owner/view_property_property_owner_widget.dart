@@ -3,40 +3,34 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'control_panel_extra_service_edit_model.dart';
-export 'control_panel_extra_service_edit_model.dart';
+import 'view_property_property_owner_model.dart';
+export 'view_property_property_owner_model.dart';
 
-class ControlPanelExtraServiceEditWidget extends StatefulWidget {
-  const ControlPanelExtraServiceEditWidget({
+class ViewPropertyPropertyOwnerWidget extends StatefulWidget {
+  const ViewPropertyPropertyOwnerWidget({
     super.key,
-    required this.extraServiceId,
+    this.propertyId,
   });
 
-  final DocumentReference? extraServiceId;
+  final DocumentReference? propertyId;
 
   @override
-  State<ControlPanelExtraServiceEditWidget> createState() =>
-      _ControlPanelExtraServiceEditWidgetState();
+  State<ViewPropertyPropertyOwnerWidget> createState() =>
+      _ViewPropertyPropertyOwnerWidgetState();
 }
 
-class _ControlPanelExtraServiceEditWidgetState
-    extends State<ControlPanelExtraServiceEditWidget> {
-  late ControlPanelExtraServiceEditModel _model;
+class _ViewPropertyPropertyOwnerWidgetState
+    extends State<ViewPropertyPropertyOwnerWidget> {
+  late ViewPropertyPropertyOwnerModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ControlPanelExtraServiceEditModel());
-
-    _model.inputServiceNameFocusNode ??= FocusNode();
-
-    _model.inputServicePriceFocusNode ??= FocusNode();
+    _model = createModel(context, () => ViewPropertyPropertyOwnerModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -50,8 +44,8 @@ class _ControlPanelExtraServiceEditWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<ExtraServiceRecord>(
-      stream: ExtraServiceRecord.getDocument(widget.extraServiceId!),
+    return StreamBuilder<PropertyRecord>(
+      stream: PropertyRecord.getDocument(widget.propertyId!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -70,7 +64,7 @@ class _ControlPanelExtraServiceEditWidgetState
           );
         }
 
-        final controlPanelExtraServiceEditExtraServiceRecord = snapshot.data!;
+        final viewPropertyPropertyOwnerPropertyRecord = snapshot.data!;
 
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
@@ -545,6 +539,7 @@ class _ControlPanelExtraServiceEditWidgetState
                     size: 24.0,
                   ),
                   onPressed: () async {
+                    // go back
                     context.safePop();
                   },
                 ),
@@ -552,7 +547,7 @@ class _ControlPanelExtraServiceEditWidgetState
               title: Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Text(
-                  'Update Extra Service',
+                  'View Property',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Inter',
                         color: Colors.white,
@@ -588,264 +583,202 @@ class _ControlPanelExtraServiceEditWidgetState
               top: true,
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                      child: Column(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24.0),
+                        child: Image.network(
+                          viewPropertyPropertyOwnerPropertyRecord.photos,
+                          width: double.infinity,
+                          height: 267.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Update Extra Service Info',
+                            viewPropertyPropertyOwnerPropertyRecord.name,
                             style: FlutterFlowTheme.of(context)
-                                .headlineMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Inter',
                                   letterSpacing: 0.0,
                                 ),
                           ),
-                          TextFormField(
-                            controller:
-                                _model.inputServiceNameTextController ??=
-                                    TextEditingController(
-                              text:
-                                  controlPanelExtraServiceEditExtraServiceRecord
-                                      .name,
-                            ),
-                            focusNode: _model.inputServiceNameFocusNode,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.inputServiceNameTextController',
-                              const Duration(milliseconds: 2000),
-                              () => setState(() {}),
-                            ),
-                            autofocus: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Service Name',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
+                              Text(
+                                '4.5',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
+                              Text(
+                                '(15)',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 5.0, 10.0, 5.0),
-                              suffixIcon: _model.inputServiceNameTextController!
-                                      .text.isNotEmpty
-                                  ? InkWell(
-                                      onTap: () async {
-                                        _model.inputServiceNameTextController
-                                            ?.clear();
-                                        setState(() {});
-                                      },
-                                      child: const Icon(
-                                        Icons.clear,
-                                        size: 22,
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Roboto',
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model
-                                .inputServiceNameTextControllerValidator
-                                .asValidator(context),
+                            ].divide(const SizedBox(width: 5.0)),
                           ),
-                          TextFormField(
-                            controller:
-                                _model.inputServicePriceTextController ??=
-                                    TextEditingController(
-                              text:
-                                  controlPanelExtraServiceEditExtraServiceRecord
-                                      .price
-                                      .toString(),
-                            ),
-                            focusNode: _model.inputServicePriceFocusNode,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              '_model.inputServicePriceTextController',
-                              const Duration(milliseconds: 2000),
-                              () => setState(() {}),
-                            ),
-                            autofocus: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Service Price',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 5.0, 10.0, 5.0),
-                              suffixIcon: _model
-                                      .inputServicePriceTextController!
-                                      .text
-                                      .isNotEmpty
-                                  ? InkWell(
-                                      onTap: () async {
-                                        _model.inputServicePriceTextController
-                                            ?.clear();
-                                        setState(() {});
-                                      },
-                                      child: const Icon(
-                                        Icons.clear,
-                                        size: 22,
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Roboto',
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model
-                                .inputServicePriceTextControllerValidator
-                                .asValidator(context),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              await widget.extraServiceId!
-                                  .update(createExtraServiceRecordData(
-                                name:
-                                    _model.inputServiceNameTextController.text,
-                                price: double.tryParse(_model
-                                    .inputServicePriceTextController.text),
-                              ));
-                              await showDialog(
-                                context: context,
-                                builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: const Text('Updated Data'),
-                                    content: const Text('Your Data Has been Up'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: const Text('Ok'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-
-                              context.pushNamed(
-                                'ControlPanelExtraServices',
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 300),
-                                  ),
-                                },
-                              );
-                            },
-                            text: 'Update Record',
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF0080FF),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ].divide(const SizedBox(height: 20.0)),
+                        ],
                       ),
-                    ),
-                  ],
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: AnimatedDefaultTextStyle(
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeIn,
+                              child: Text(
+                                viewPropertyPropertyOwnerPropertyRecord.address,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: AnimatedDefaultTextStyle(
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeIn,
+                              child: Text(
+                                viewPropertyPropertyOwnerPropertyRecord
+                                    .description,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Text(
+                              viewPropertyPropertyOwnerPropertyRecord.price
+                                  .toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Text(
+                              'Night',
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Text(
+                          'Extra Services',
+                          style:
+                              FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        child: Builder(
+                          builder: (context) {
+                            final extraservices =
+                                viewPropertyPropertyOwnerPropertyRecord
+                                    .extraServices
+                                    .map((e) => e.id)
+                                    .toList();
+
+                            return Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: List.generate(extraservices.length,
+                                  (extraservicesIndex) {
+                                final extraservicesItem =
+                                    extraservices[extraservicesIndex];
+                                return StreamBuilder<ExtraServiceRecord>(
+                                  stream: ExtraServiceRecord.getDocument(
+                                      viewPropertyPropertyOwnerPropertyRecord
+                                          .extraServices[extraservicesIndex]),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: SpinKitDualRing(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 50.0,
+                                          ),
+                                        ),
+                                      );
+                                    }
+
+                                    final textExtraServiceRecord =
+                                        snapshot.data!;
+
+                                    return Text(
+                                      textExtraServiceRecord.name,
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    );
+                                  },
+                                );
+                              }).divide(const SizedBox(height: 5.0)),
+                            );
+                          },
+                        ),
+                      ),
+                    ].divide(const SizedBox(height: 10.0)),
+                  ),
                 ),
               ),
             ),

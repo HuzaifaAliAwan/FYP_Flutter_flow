@@ -4,11 +4,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'control_panel_model.dart';
-export 'control_panel_model.dart';
+import 'control_panel_customer_model.dart';
+export 'control_panel_customer_model.dart';
 
-class ControlPanelWidget extends StatefulWidget {
-  const ControlPanelWidget({
+class ControlPanelCustomerWidget extends StatefulWidget {
+  const ControlPanelCustomerWidget({
     super.key,
     this.pagename,
   });
@@ -16,18 +16,20 @@ class ControlPanelWidget extends StatefulWidget {
   final String? pagename;
 
   @override
-  State<ControlPanelWidget> createState() => _ControlPanelWidgetState();
+  State<ControlPanelCustomerWidget> createState() =>
+      _ControlPanelCustomerWidgetState();
 }
 
-class _ControlPanelWidgetState extends State<ControlPanelWidget> {
-  late ControlPanelModel _model;
+class _ControlPanelCustomerWidgetState
+    extends State<ControlPanelCustomerWidget> {
+  late ControlPanelCustomerModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ControlPanelModel());
+    _model = createModel(context, () => ControlPanelCustomerModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -381,6 +383,32 @@ class _ControlPanelWidgetState extends State<ControlPanelWidget> {
                                   scaffoldKey.currentState!.isEndDrawerOpen) {
                                 Navigator.pop(context);
                               }
+
+                              if (valueOrDefault(
+                                      currentUserDocument?.role, '') ==
+                                  'Property Owner') {
+                                context.pushNamed(
+                                  'ControlPanelPropertyOwner',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 300),
+                                    ),
+                                  },
+                                );
+                              } else {
+                                context.pushNamed(
+                                  'ControlPanelCustomer',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 300),
+                                    ),
+                                  },
+                                );
+                              }
                             },
                             child: Container(
                               width: 100.0,
@@ -543,52 +571,7 @@ class _ControlPanelWidgetState extends State<ControlPanelWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         context.pushNamed(
-                          'ControlPanelProperties',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 300),
-                            ),
-                          },
-                        );
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          const Icon(
-                            Icons.house_outlined,
-                            color: Color(0xFF0C55C6),
-                            size: 50.0,
-                          ),
-                          Text(
-                            'Properties',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: 'Roboto',
-                                      color: const Color(0xFF0C55C6),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed(
-                          'ControlPanelBooking',
+                          'ControlPanelBookingCustomer',
                           extra: <String, dynamic>{
                             kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
@@ -608,51 +591,6 @@ class _ControlPanelWidgetState extends State<ControlPanelWidget> {
                           ),
                           Text(
                             'Bookings',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: 'Roboto',
-                                      color: const Color(0xFF0C55C6),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                          ),
-                        ].divide(const SizedBox(height: 5.0)),
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed(
-                          'ControlPanelExtraServices',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 300),
-                            ),
-                          },
-                        );
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          const Icon(
-                            Icons.cleaning_services,
-                            color: Color(0xFF0C55C6),
-                            size: 50.0,
-                          ),
-                          Text(
-                            'Extra services',
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Roboto',

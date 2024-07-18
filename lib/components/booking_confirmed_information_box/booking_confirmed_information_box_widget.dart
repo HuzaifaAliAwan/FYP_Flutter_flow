@@ -66,7 +66,6 @@ class _BookingConfirmedInformationBoxWidgetState
                   ),
                   onPressed: () async {
                     Navigator.pop(context);
-                    Navigator.pop(context);
                   },
                 ),
               ),

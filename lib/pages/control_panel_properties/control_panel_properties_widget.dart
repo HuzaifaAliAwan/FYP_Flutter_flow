@@ -445,16 +445,33 @@ class _ControlPanelPropertiesWidgetState
                                     Navigator.pop(context);
                                   }
 
-                                  context.pushNamed(
-                                    'ControlPanel',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 300),
-                                      ),
-                                    },
-                                  );
+                                  if (valueOrDefault(
+                                          currentUserDocument?.role, '') ==
+                                      'Property Owner') {
+                                    context.pushNamed(
+                                      'ControlPanelPropertyOwner',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 300),
+                                        ),
+                                      },
+                                    );
+                                  } else {
+                                    context.pushNamed(
+                                      'ControlPanelCustomer',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 300),
+                                        ),
+                                      },
+                                    );
+                                  }
                                 },
                                 child: Container(
                                   width: 100.0,
@@ -795,198 +812,269 @@ class _ControlPanelPropertiesWidgetState
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            listViewPropertyRecord
-                                                                .name,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          if (valueOrDefault(
+                                                                  currentUserDocument
+                                                                      ?.role,
+                                                                  '') ==
+                                                              'Property Owner') {
+                                                            context.pushNamed(
+                                                              'ViewPropertyPropertyOwner',
+                                                              queryParameters: {
+                                                                'propertyId':
+                                                                    serializeParam(
+                                                                  listViewPropertyRecord
+                                                                      .reference,
+                                                                  ParamType
+                                                                      .DocumentReference,
                                                                 ),
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              FlutterFlowIconButton(
-                                                                borderColor: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    20.0,
-                                                                borderWidth:
-                                                                    1.0,
-                                                                buttonSize:
-                                                                    40.0,
-                                                                icon: Icon(
-                                                                  Icons.edit,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  size: 24.0,
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          300),
                                                                 ),
-                                                                onPressed:
-                                                                    () async {
-                                                                  context
-                                                                      .pushNamed(
-                                                                    'ControlPanelPropertiesEdit',
-                                                                    queryParameters:
-                                                                        {
-                                                                      'propertyId':
-                                                                          serializeParam(
-                                                                        listViewPropertyRecord
-                                                                            .reference,
-                                                                        ParamType
-                                                                            .DocumentReference,
-                                                                      ),
-                                                                      'propertyName':
-                                                                          serializeParam(
-                                                                        listViewPropertyRecord
-                                                                            .name,
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                      'propertyDescription':
-                                                                          serializeParam(
-                                                                        listViewPropertyRecord
-                                                                            .description,
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                      'propertyPrice':
-                                                                          serializeParam(
-                                                                        listViewPropertyRecord
-                                                                            .price
-                                                                            .toString(),
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                      'propertyAddress':
-                                                                          serializeParam(
-                                                                        listViewPropertyRecord
-                                                                            .address,
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                    extra: <String,
-                                                                        dynamic>{
-                                                                      kTransitionInfoKey:
-                                                                          const TransitionInfo(
-                                                                        hasTransition:
-                                                                            true,
-                                                                        transitionType:
-                                                                            PageTransitionType.fade,
-                                                                        duration:
-                                                                            Duration(milliseconds: 300),
-                                                                      ),
-                                                                    },
-                                                                  );
-                                                                },
-                                                              ),
-                                                              FlutterFlowIconButton(
-                                                                borderColor: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    20.0,
-                                                                borderWidth:
-                                                                    1.0,
-                                                                buttonSize:
-                                                                    40.0,
-                                                                icon: Icon(
-                                                                  Icons.delete,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  size: 24.0,
+                                                              },
+                                                            );
+                                                          } else {
+                                                            context.pushNamed(
+                                                              'ViewPropertyCustomer',
+                                                              queryParameters: {
+                                                                'propertyId':
+                                                                    serializeParam(
+                                                                  listViewPropertyRecord
+                                                                      .reference,
+                                                                  ParamType
+                                                                      .DocumentReference,
                                                                 ),
-                                                                onPressed:
-                                                                    () async {
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: const Text('Delete Confirmation'),
-                                                                                content: const Text('This action cannot be undone. Are you sure you want to do it?'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: const Text('Cancel'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: const Text('Confirm'),
-                                                                                  ),
-                                                                                ],
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (confirmDialogResponse) {
-                                                                    await listViewPropertyRecord
-                                                                        .reference
-                                                                        .delete();
-                                                                    await showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              const Text('Delete Successful'),
-                                                                          content:
-                                                                              const Text('Property has been deleted successfully'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: const Text('Ok'),
-                                                                            ),
-                                                                          ],
-                                                                        );
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          300),
+                                                                ),
+                                                              },
+                                                            );
+                                                          }
+                                                        },
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              listViewPropertyRecord
+                                                                  .name,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                FlutterFlowIconButton(
+                                                                  borderColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  borderRadius:
+                                                                      20.0,
+                                                                  borderWidth:
+                                                                      1.0,
+                                                                  buttonSize:
+                                                                      40.0,
+                                                                  icon: Icon(
+                                                                    Icons.edit,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    size: 24.0,
+                                                                  ),
+                                                                  onPressed:
+                                                                      () async {
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'ControlPanelPropertiesEdit',
+                                                                      queryParameters:
+                                                                          {
+                                                                        'propertyId':
+                                                                            serializeParam(
+                                                                          listViewPropertyRecord
+                                                                              .reference,
+                                                                          ParamType
+                                                                              .DocumentReference,
+                                                                        ),
+                                                                        'propertyName':
+                                                                            serializeParam(
+                                                                          listViewPropertyRecord
+                                                                              .name,
+                                                                          ParamType
+                                                                              .String,
+                                                                        ),
+                                                                        'propertyDescription':
+                                                                            serializeParam(
+                                                                          listViewPropertyRecord
+                                                                              .description,
+                                                                          ParamType
+                                                                              .String,
+                                                                        ),
+                                                                        'propertyPrice':
+                                                                            serializeParam(
+                                                                          listViewPropertyRecord
+                                                                              .price
+                                                                              .toString(),
+                                                                          ParamType
+                                                                              .String,
+                                                                        ),
+                                                                        'propertyAddress':
+                                                                            serializeParam(
+                                                                          listViewPropertyRecord
+                                                                              .address,
+                                                                          ParamType
+                                                                              .String,
+                                                                        ),
+                                                                      }.withoutNulls,
+                                                                      extra: <String,
+                                                                          dynamic>{
+                                                                        kTransitionInfoKey:
+                                                                            const TransitionInfo(
+                                                                          hasTransition:
+                                                                              true,
+                                                                          transitionType:
+                                                                              PageTransitionType.fade,
+                                                                          duration:
+                                                                              Duration(milliseconds: 300),
+                                                                        ),
                                                                       },
                                                                     );
-                                                                  } else {
-                                                                    await showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              const Text('Not Deleted'),
-                                                                          content:
-                                                                              const Text('Property has not been deleted.'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: const Text('Ok'),
-                                                                            ),
-                                                                          ],
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                  }
-                                                                },
-                                                              ),
-                                                            ].divide(const SizedBox(
-                                                                width: 5.0)),
-                                                          ),
-                                                        ],
+                                                                  },
+                                                                ),
+                                                                FlutterFlowIconButton(
+                                                                  borderColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  borderRadius:
+                                                                      20.0,
+                                                                  borderWidth:
+                                                                      1.0,
+                                                                  buttonSize:
+                                                                      40.0,
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .delete,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    size: 24.0,
+                                                                  ),
+                                                                  onPressed:
+                                                                      () async {
+                                                                    var confirmDialogResponse =
+                                                                        await showDialog<bool>(
+                                                                              context: context,
+                                                                              builder: (alertDialogContext) {
+                                                                                return AlertDialog(
+                                                                                  title: const Text('Delete Confirmation'),
+                                                                                  content: const Text('This action cannot be undone. Are you sure you want to do it?'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: const Text('Cancel'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: const Text('Confirm'),
+                                                                                    ),
+                                                                                  ],
+                                                                                );
+                                                                              },
+                                                                            ) ??
+                                                                            false;
+                                                                    if (confirmDialogResponse) {
+                                                                      await listViewPropertyRecord
+                                                                          .reference
+                                                                          .delete();
+                                                                      await showDialog(
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (alertDialogContext) {
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                const Text('Delete Successful'),
+                                                                            content:
+                                                                                const Text('Property has been deleted successfully'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: const Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    } else {
+                                                                      await showDialog(
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (alertDialogContext) {
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                const Text('Not Deleted'),
+                                                                            content:
+                                                                                const Text('Property has not been deleted.'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: const Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    }
+                                                                  },
+                                                                ),
+                                                              ].divide(const SizedBox(
+                                                                  width: 5.0)),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                       Opacity(
                                                         opacity: 0.8,

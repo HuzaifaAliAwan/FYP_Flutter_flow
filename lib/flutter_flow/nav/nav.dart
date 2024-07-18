@@ -151,21 +151,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ViewProperty',
-          path: '/viewProperty',
+          name: 'ControlPanelPropertyOwner',
+          path: '/controlPanelPropertyOwner',
           requireAuth: true,
-          builder: (context, params) => ViewPropertyWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'ControlPanel',
-          path: '/controlPanel',
-          requireAuth: true,
-          builder: (context, params) => ControlPanelWidget(
+          builder: (context, params) => ControlPanelPropertyOwnerWidget(
             pagename: params.getParam(
               'pagename',
               ParamType.String,
@@ -184,10 +173,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ControlPanelBooking',
-          path: '/controlPanelBooking',
+          name: 'ControlPanelBookingPropertyOwner',
+          path: '/controlPanelBookingPropertyOwner',
           requireAuth: true,
-          builder: (context, params) => ControlPanelBookingWidget(
+          builder: (context, params) => ControlPanelBookingPropertyOwnerWidget(
             pagename: params.getParam(
               'pagename',
               ParamType.String,
@@ -246,6 +235,59 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'ViewPropertyPropertyOwner',
+          path: '/viewPropertyPropertyOwner',
+          requireAuth: true,
+          builder: (context, params) => ViewPropertyPropertyOwnerWidget(
+            propertyId: params.getParam(
+              'propertyId',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['property'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ViewPropertyCustomer',
+          path: '/viewPropertyCustomer',
+          requireAuth: true,
+          builder: (context, params) => ViewPropertyCustomerWidget(
+            propertyId: params.getParam(
+              'propertyId',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['property'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ControlPanelCustomer',
+          path: '/controlPanelCustomer',
+          requireAuth: true,
+          builder: (context, params) => ControlPanelCustomerWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ControlPanelBookingCustomer',
+          path: '/controlPanelBookingCustomer',
+          requireAuth: true,
+          builder: (context, params) => ControlPanelBookingCustomerWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'forgotPasswordPage',
+          path: '/forgotPasswordPage',
+          builder: (context, params) => const ForgotPasswordPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

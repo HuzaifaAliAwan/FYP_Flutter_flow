@@ -1,9 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'control_panel_booking_widget.dart' show ControlPanelBookingWidget;
+import 'control_panel_booking_property_owner_widget.dart'
+    show ControlPanelBookingPropertyOwnerWidget;
 import 'package:flutter/material.dart';
 
-class ControlPanelBookingModel
-    extends FlutterFlowModel<ControlPanelBookingWidget> {
+class ControlPanelBookingPropertyOwnerModel
+    extends FlutterFlowModel<ControlPanelBookingPropertyOwnerWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

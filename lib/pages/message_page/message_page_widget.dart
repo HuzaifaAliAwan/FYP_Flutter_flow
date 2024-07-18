@@ -378,16 +378,37 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
-                                'ControlPanel',
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 300),
-                                  ),
-                                },
-                              );
+                              // Close Drawer
+                              if (scaffoldKey.currentState!.isDrawerOpen ||
+                                  scaffoldKey.currentState!.isEndDrawerOpen) {
+                                Navigator.pop(context);
+                              }
+
+                              if (valueOrDefault(
+                                      currentUserDocument?.role, '') ==
+                                  'Property Owner') {
+                                context.pushNamed(
+                                  'ControlPanelPropertyOwner',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 300),
+                                    ),
+                                  },
+                                );
+                              } else {
+                                context.pushNamed(
+                                  'ControlPanelCustomer',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 300),
+                                    ),
+                                  },
+                                );
+                              }
                             },
                             child: Container(
                               width: 100.0,
@@ -481,19 +502,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                 size: 24.0,
               ),
               onPressed: () async {
-                if (Navigator.of(context).canPop()) {
-                  context.pop();
-                }
-                context.pushNamed(
-                  'ConversationsPage',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 300),
-                    ),
-                  },
-                );
+                context.safePop();
               },
             ),
           ),

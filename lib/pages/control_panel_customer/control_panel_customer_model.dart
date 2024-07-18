@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'view_property_widget.dart' show ViewPropertyWidget;
+import 'control_panel_customer_widget.dart' show ControlPanelCustomerWidget;
 import 'package:flutter/material.dart';
 
-class ViewPropertyModel extends FlutterFlowModel<ViewPropertyWidget> {
+class ControlPanelCustomerModel
+    extends FlutterFlowModel<ControlPanelCustomerWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
