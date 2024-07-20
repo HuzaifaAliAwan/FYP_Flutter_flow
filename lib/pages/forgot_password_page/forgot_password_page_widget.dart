@@ -61,7 +61,6 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                   child: FlutterFlowIconButton(
                     borderRadius: 20.0,
                     borderWidth: 1.0,
-                    buttonSize: 40.0,
                     icon: Icon(
                       Icons.chevron_left,
                       color: FlutterFlowTheme.of(context).primaryText,
@@ -228,6 +227,37 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                             await authManager.resetPassword(
                               email: _model.forgotPWEmailTextController.text,
                               context: context,
+                            );
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('Reset Email'),
+                                  content: const Text(
+                                      'Reset Email has been send to you. Please use that to reset you password.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            setState(() {
+                              _model.forgotPWEmailTextController?.clear();
+                            });
+
+                            context.goNamed(
+                              'loginRegister',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 300),
+                                ),
+                              },
                             );
                           },
                           text: 'Continue',

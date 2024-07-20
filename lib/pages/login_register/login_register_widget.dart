@@ -164,7 +164,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             const Duration(milliseconds: 2000),
                                             () => setState(() {}),
                                           ),
-                                          autofocus: true,
+                                          autofocus: false,
                                           textCapitalization:
                                               TextCapitalization.none,
                                           textInputAction: TextInputAction.next,
@@ -269,7 +269,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                               .loginPasswordTextController,
                                           focusNode:
                                               _model.loginPasswordFocusNode,
-                                          autofocus: true,
+                                          autofocus: false,
                                           textCapitalization:
                                               TextCapitalization.none,
                                           textInputAction: TextInputAction.next,
@@ -675,7 +675,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                 const Duration(milliseconds: 2000),
                                                 () => setState(() {}),
                                               ),
-                                              autofocus: true,
+                                              autofocus: false,
                                               textCapitalization:
                                                   TextCapitalization.words,
                                               textInputAction:
@@ -799,7 +799,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                 const Duration(milliseconds: 2000),
                                                 () => setState(() {}),
                                               ),
-                                              autofocus: true,
+                                              autofocus: false,
                                               textCapitalization:
                                                   TextCapitalization.none,
                                               textInputAction:
@@ -920,7 +920,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                 const Duration(milliseconds: 2000),
                                                 () => setState(() {}),
                                               ),
-                                              autofocus: true,
+                                              autofocus: false,
                                               textCapitalization:
                                                   TextCapitalization.none,
                                               textInputAction:
@@ -1041,7 +1041,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                 const Duration(milliseconds: 2000),
                                                 () => setState(() {}),
                                               ),
-                                              autofocus: true,
+                                              autofocus: false,
                                               textCapitalization:
                                                   TextCapitalization.none,
                                               textInputAction:
@@ -1161,7 +1161,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                 const Duration(milliseconds: 2000),
                                                 () => setState(() {}),
                                               ),
-                                              autofocus: true,
+                                              autofocus: false,
                                               textCapitalization:
                                                   TextCapitalization.none,
                                               textInputAction:
@@ -1275,7 +1275,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                   .inputPasswordTextController,
                                               focusNode:
                                                   _model.inputPasswordFocusNode,
-                                              autofocus: true,
+                                              autofocus: false,
                                               textCapitalization:
                                                   TextCapitalization.none,
                                               textInputAction:
@@ -1391,7 +1391,7 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                   .inputConfirmPasswordTextController,
                                               focusNode: _model
                                                   .inputConfirmPasswordFocusNode,
-                                              autofocus: true,
+                                              autofocus: false,
                                               textCapitalization:
                                                   TextCapitalization.none,
                                               textInputAction:
