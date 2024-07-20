@@ -30,3 +30,4 @@ export '/pages/control_panel_booking_customer/control_panel_booking_customer_wid
     show ControlPanelBookingCustomerWidget;
 export '/pages/forgot_password_page/forgot_password_page_widget.dart'
     show ForgotPasswordPageWidget;
+export '/pages/chat_screen/chat_screen_widget.dart' show ChatScreenWidget;

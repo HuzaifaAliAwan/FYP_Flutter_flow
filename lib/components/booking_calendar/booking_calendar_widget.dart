@@ -118,7 +118,7 @@ class _BookingCalendarWidgetState extends State<BookingCalendarWidget>
                           color: FlutterFlowTheme.of(context).primary,
                           iconColor: FlutterFlowTheme.of(context).secondaryText,
                           weekFormat: false,
-                          weekStartsMonday: false,
+                          weekStartsMonday: true,
                           rowHeight: 64.0,
                           onChange: (DateTimeRange? newSelectedDate) {
                             setState(() => _model.inputCheckinDateSelectedDay =
@@ -281,47 +281,94 @@ class _BookingCalendarWidgetState extends State<BookingCalendarWidget>
                   Builder(
                     builder: (context) => FFButtonWidget(
                       onPressed: () async {
-                        // CreatePropertyBooking
+                        if (_model.inputCheckinDateSelectedDay!.start >
+                            dateTimeFromSecondsSinceEpoch(
+                                getCurrentTimestamp.secondsSinceEpoch)) {
+                          if ((_model.inputCheckoutDateSelectedDay!.start >
+                                  getCurrentTimestamp) &&
+                              (_model.inputCheckoutDateSelectedDay!.start >
+                                  _model.inputCheckinDateSelectedDay!.end)) {
+                            // CreatePropertyBooking
 
-                        await BookingRecord.collection
-                            .doc()
-                            .set(createBookingRecordData(
-                              propertyId: widget.propertyId,
-                              customerId: currentUserReference,
-                              checkInDate:
-                                  _model.inputCheckinDateSelectedDay?.start,
-                              checkOutDate:
-                                  _model.inputCheckoutDateSelectedDay?.end,
-                              noOfGuests: _model.dropDownValue,
-                              activeStatus: true,
-                              reqApproved: false,
-                              propertyOwnerId: widget.propertyOwnerId,
-                              showInHistoryPropertyOwner: false,
-                              showInHistoryCustomer: false,
+                            await BookingRecord.collection
+                                .doc()
+                                .set(createBookingRecordData(
+                                  propertyId: widget.propertyId,
+                                  customerId: currentUserReference,
+                                  checkInDate:
+                                      _model.inputCheckinDateSelectedDay?.start,
+                                  checkOutDate:
+                                      _model.inputCheckoutDateSelectedDay?.end,
+                                  noOfGuests: _model.dropDownValue,
+                                  activeStatus: true,
+                                  reqApproved: false,
+                                  propertyOwnerId: widget.propertyOwnerId,
+                                  showInHistoryPropertyOwner: false,
+                                  showInHistoryCustomer: false,
+                                ));
+
+                            await widget.propertyId!
+                                .update(createPropertyRecordData(
+                              available: false,
                             ));
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.8,
+                                    child:
+                                        const BookingConfirmedInformationBoxWidget(),
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
 
-                        await widget.propertyId!
-                            .update(createPropertyRecordData(
-                          available: false,
-                        ));
-                        await showDialog(
-                          context: context,
-                          builder: (dialogContext) {
-                            return Dialog(
-                              elevation: 0,
-                              insetPadding: EdgeInsets.zero,
-                              backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
-                                  .resolve(Directionality.of(context)),
-                              child: SizedBox(
-                                width: MediaQuery.sizeOf(context).width * 0.8,
-                                child: const BookingConfirmedInformationBoxWidget(),
-                              ),
+                            Navigator.pop(context);
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('Invalid Check out date'),
+                                  content: const Text(
+                                      'Please select correct check out date'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
                             );
-                          },
-                        ).then((value) => setState(() {}));
-
-                        Navigator.pop(context);
+                          }
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('Invalid Check in date'),
+                                content:
+                                    const Text('Please select correct check in date'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       text: 'Accept',
                       options: FFButtonOptions(

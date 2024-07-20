@@ -288,6 +288,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'forgotPasswordPage',
           path: '/forgotPasswordPage',
           builder: (context, params) => const ForgotPasswordPageWidget(),
+        ),
+        FFRoute(
+          name: 'chatScreen',
+          path: '/chatScreen',
+          builder: (context, params) => const ChatScreenWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
