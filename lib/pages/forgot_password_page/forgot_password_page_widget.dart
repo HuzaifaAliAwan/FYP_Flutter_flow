@@ -210,6 +210,10 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                             const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
+                            if (_model.formKey.currentState == null ||
+                                !_model.formKey.currentState!.validate()) {
+                              return;
+                            }
                             if (_model
                                 .forgotPWEmailTextController.text.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(

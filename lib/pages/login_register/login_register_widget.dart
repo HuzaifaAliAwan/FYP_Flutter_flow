@@ -371,6 +371,12 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                             0.0, 40.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            if (_model.formKey1.currentState ==
+                                                    null ||
+                                                !_model.formKey1.currentState!
+                                                    .validate()) {
+                                              return;
+                                            }
                                             GoRouter.of(context)
                                                 .prepareAuthEvent();
 
@@ -1553,6 +1559,22 @@ class _LoginRegisterWidgetState extends State<LoginRegisterWidget>
                                                     0.0, 40.0, 0.0, 40.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
+                                                if (_model.formKey2
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey2.currentState!
+                                                        .validate()) {
+                                                  return;
+                                                }
+                                                if (_model.uploadedFileUrl
+                                                        .isEmpty) {
+                                                  return;
+                                                }
+                                                if (_model.inputRoleValue ==
+                                                    null) {
+                                                  return;
+                                                }
                                                 GoRouter.of(context)
                                                     .prepareAuthEvent();
                                                 if (_model
