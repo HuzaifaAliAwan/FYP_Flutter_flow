@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'houseHoteling',
+      title: 'House Hoteling',
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -118,6 +118,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'searchProperty': const SearchPropertyWidget(),
       'ConversationsPage': const ConversationsPageWidget(),
       'ProfilePage': const ProfilePageWidget(),
+      'HomePageCopy': const HomePageCopyWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -166,6 +167,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Profile',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              size: 24.0,
+            ),
+            label: 'Home',
             tooltip: '',
           )
         ],

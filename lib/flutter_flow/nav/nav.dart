@@ -293,6 +293,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'chatScreen',
           path: '/chatScreen',
           builder: (context, params) => const ChatScreenWidget(),
+        ),
+        FFRoute(
+          name: 'HomePageCopy',
+          path: '/homePageCopy',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'HomePageCopy')
+              : HomePageCopyWidget(
+                  pagename: params.getParam(
+                    'pagename',
+                    ParamType.String,
+                  ),
+                ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

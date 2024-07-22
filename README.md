@@ -1,4 +1,4 @@
-# houseHoteling
+# House Hoteling
 
 A new Flutter project.
 
