@@ -3,18 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
+
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
-import '/main.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -73,134 +75,163 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const LoginRegisterWidget(),
+          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const LoginRegisterWidget(),
+              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+        ),
+        FFRoute(
+          name: 'ControlPanelPage',
+          path: '/controlPanelPage',
+          requireAuth: true,
+          builder: (context, params) => ControlPanelPageWidget(
+            pagename: params.getParam(
+              'pagename',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerEditProperty',
+          path: '/propertyOwnerEditProperty',
+          requireAuth: true,
+          builder: (context, params) => PropertyOwnerEditPropertyWidget(
+            propertyId: params.getParam(
+              'propertyId',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['property'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ChatScreenPage',
+          path: '/chatScreenPage',
+          requireAuth: true,
+          asyncParams: {
+            'conversationDocument':
+                getDoc(['conversations'], ConversationsRecord.fromSnapshot),
+            'receiverDocument': getDoc(['users'], UsersRecord.fromSnapshot),
+          },
+          builder: (context, params) => ChatScreenPageWidget(
+            conversationDocument: params.getParam(
+              'conversationDocument',
+              ParamType.Document,
+            ),
+            receiverDocument: params.getParam(
+              'receiverDocument',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(
-                  pagename: params.getParam(
-                    'pagename',
-                    ParamType.String,
-                  ),
-                ),
-        ),
-        FFRoute(
-          name: 'loginRegister',
-          path: '/loginRegister',
-          builder: (context, params) => const LoginRegisterWidget(),
+          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'ProfilePage',
           path: '/profilePage',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'ProfilePage')
-              : ProfilePageWidget(
-                  pagename: params.getParam(
-                    'pagename',
-                    ParamType.String,
-                  ),
-                ),
+          builder: (context, params) => ProfilePageWidget(),
         ),
         FFRoute(
-          name: 'searchProperty',
-          path: '/searchProperty',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'searchProperty')
-              : SearchPropertyWidget(
-                  pagename: params.getParam(
-                    'pagename',
-                    ParamType.String,
-                  ),
-                ),
+          name: 'loginPage',
+          path: '/loginPage',
+          builder: (context, params) => LoginPageWidget(),
         ),
         FFRoute(
-          name: 'ConversationsPage',
-          path: '/conversationsPage',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'ConversationsPage')
-              : ConversationsPageWidget(
-                  pagename: params.getParam(
-                    'pagename',
-                    ParamType.String,
-                  ),
-                ),
+          name: 'RegistrationPage',
+          path: '/registrationPage',
+          builder: (context, params) => RegistrationPageWidget(),
         ),
         FFRoute(
-          name: 'MessagePage',
-          path: '/messagePage',
+          name: 'ForgotPassword',
+          path: '/forgotPassword',
+          builder: (context, params) => ForgotPasswordWidget(),
+        ),
+        FFRoute(
+          name: 'EditProfilePage',
+          path: '/editProfilePage',
           requireAuth: true,
-          builder: (context, params) => MessagePageWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
+          builder: (context, params) => EditProfilePageWidget(),
+        ),
+        FFRoute(
+          name: 'ConversationPage',
+          path: '/conversationPage',
+          requireAuth: true,
+          builder: (context, params) => ConversationPageWidget(),
+        ),
+        FFRoute(
+          name: 'termsAndConditionsPage',
+          path: '/termsAndConditionsPage',
+          builder: (context, params) => TermsAndConditionsPageWidget(),
+        ),
+        FFRoute(
+          name: 'supportPage',
+          path: '/supportPage',
+          builder: (context, params) => SupportPageWidget(),
+        ),
+        FFRoute(
+          name: 'ViewPropertyPage',
+          path: '/viewPropertyPage',
+          requireAuth: true,
+          builder: (context, params) => ViewPropertyPageWidget(
+            propertyReference: params.getParam(
+              'propertyReference',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['property'],
             ),
           ),
         ),
         FFRoute(
-          name: 'ControlPanelPropertyOwner',
-          path: '/controlPanelPropertyOwner',
+          name: 'PropertyOwnerAddProperty',
+          path: '/propertyOwnerAddProperty',
           requireAuth: true,
-          builder: (context, params) => ControlPanelPropertyOwnerWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) => PropertyOwnerAddPropertyWidget(),
         ),
         FFRoute(
-          name: 'ControlPanelProperties',
-          path: '/controlPanelProperties',
+          name: 'PropertyOwnerApprovedPropertiesList',
+          path: '/propertyOwnerApprovedPropertiesList',
           requireAuth: true,
-          builder: (context, params) => ControlPanelPropertiesWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) =>
+              PropertyOwnerApprovedPropertiesListWidget(),
         ),
         FFRoute(
-          name: 'ControlPanelBookingPropertyOwner',
-          path: '/controlPanelBookingPropertyOwner',
+          name: 'PropertyOwnerControlPanelProperties',
+          path: '/propertyOwnerControlPanelProperties',
           requireAuth: true,
-          builder: (context, params) => ControlPanelBookingPropertyOwnerWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) =>
+              PropertyOwnerControlPanelPropertiesWidget(),
         ),
         FFRoute(
-          name: 'ControlPanelExtraServices',
-          path: '/controlPanelExtraServices',
+          name: 'PropertyOwnerControlPanelExtraServices',
+          path: '/propertyOwnerControlPanelExtraServices',
           requireAuth: true,
-          builder: (context, params) => ControlPanelExtraServicesWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) =>
+              PropertyOwnerControlPanelExtraServicesWidget(),
         ),
         FFRoute(
-          name: 'ControlPanelExtraServiceEdit',
-          path: '/controlPanelExtraServiceEdit',
+          name: 'PropertyOwnerAddExtraServicePage',
+          path: '/propertyOwnerAddExtraServicePage',
           requireAuth: true,
-          builder: (context, params) => ControlPanelExtraServiceEditWidget(
-            extraServiceId: params.getParam(
-              'extraServiceId',
+          builder: (context, params) =>
+              PropertyOwnerAddExtraServicePageWidget(),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerEditExtraServicePage',
+          path: '/propertyOwnerEditExtraServicePage',
+          requireAuth: true,
+          builder: (context, params) => PropertyOwnerEditExtraServicePageWidget(
+            extraServiceReference: params.getParam(
+              'extraServiceReference',
               ParamType.DocumentReference,
               isList: false,
               collectionNamePath: ['extraService'],
@@ -208,104 +239,123 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ControlPanelPropertiesEdit',
-          path: '/controlPanelPropertiesEdit',
+          name: 'PropertyOwnerExtraServicesListPage',
+          path: '/propertyOwnerExtraServicesListPage',
           requireAuth: true,
-          builder: (context, params) => ControlPanelPropertiesEditWidget(
-            propertyId: params.getParam(
-              'propertyId',
+          builder: (context, params) =>
+              PropertyOwnerExtraServicesListPageWidget(),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerExtraServicesViewPage',
+          path: '/propertyOwnerExtraServicesViewPage',
+          requireAuth: true,
+          builder: (context, params) =>
+              PropertyOwnerExtraServicesViewPageWidget(
+            extraServiceReference: params.getParam(
+              'extraServiceReference',
               ParamType.DocumentReference,
               isList: false,
-              collectionNamePath: ['property'],
-            ),
-            propertyName: params.getParam(
-              'propertyName',
-              ParamType.String,
-            ),
-            propertyDescription: params.getParam(
-              'propertyDescription',
-              ParamType.String,
-            ),
-            propertyPrice: params.getParam(
-              'propertyPrice',
-              ParamType.String,
-            ),
-            propertyAddress: params.getParam(
-              'propertyAddress',
-              ParamType.String,
+              collectionNamePath: ['extraService'],
             ),
           ),
         ),
         FFRoute(
-          name: 'ViewPropertyPropertyOwner',
-          path: '/viewPropertyPropertyOwner',
+          name: 'BookingsControlPanelPage',
+          path: '/bookingsControlPanelPage',
           requireAuth: true,
-          builder: (context, params) => ViewPropertyPropertyOwnerWidget(
-            propertyId: params.getParam(
-              'propertyId',
+          builder: (context, params) => BookingsControlPanelPageWidget(),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerBookingRequestsPage',
+          path: '/propertyOwnerBookingRequestsPage',
+          requireAuth: true,
+          builder: (context, params) =>
+              PropertyOwnerBookingRequestsPageWidget(),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerActiveBookingsPage',
+          path: '/propertyOwnerActiveBookingsPage',
+          requireAuth: true,
+          builder: (context, params) => PropertyOwnerActiveBookingsPageWidget(),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerBookingHistoryPage',
+          path: '/propertyOwnerBookingHistoryPage',
+          requireAuth: true,
+          builder: (context, params) => PropertyOwnerBookingHistoryPageWidget(),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerBookingViewPage',
+          path: '/propertyOwnerBookingViewPage',
+          requireAuth: true,
+          builder: (context, params) => PropertyOwnerBookingViewPageWidget(
+            bookingReference: params.getParam(
+              'bookingReference',
               ParamType.DocumentReference,
               isList: false,
-              collectionNamePath: ['property'],
+              collectionNamePath: ['booking'],
             ),
           ),
         ),
         FFRoute(
-          name: 'ViewPropertyCustomer',
-          path: '/viewPropertyCustomer',
+          name: 'CustomerActiveBookingsPage',
+          path: '/customerActiveBookingsPage',
           requireAuth: true,
-          builder: (context, params) => ViewPropertyCustomerWidget(
-            propertyId: params.getParam(
-              'propertyId',
+          builder: (context, params) => CustomerActiveBookingsPageWidget(),
+        ),
+        FFRoute(
+          name: 'CustomerBookingHistoryPage',
+          path: '/customerBookingHistoryPage',
+          requireAuth: true,
+          builder: (context, params) => CustomerBookingHistoryPageWidget(),
+        ),
+        FFRoute(
+          name: 'CustomerBookingRequestsPage',
+          path: '/customerBookingRequestsPage',
+          requireAuth: true,
+          builder: (context, params) => CustomerBookingRequestsPageWidget(),
+        ),
+        FFRoute(
+          name: 'CustomerBookingViewPage',
+          path: '/customerBookingViewPage',
+          requireAuth: true,
+          builder: (context, params) => CustomerBookingViewPageWidget(
+            bookingReference: params.getParam(
+              'bookingReference',
               ParamType.DocumentReference,
               isList: false,
-              collectionNamePath: ['property'],
+              collectionNamePath: ['booking'],
             ),
           ),
         ),
         FFRoute(
-          name: 'ControlPanelCustomer',
-          path: '/controlPanelCustomer',
+          name: 'AdminHome',
+          path: '/adminHome',
+          builder: (context, params) => AdminHomeWidget(),
+        ),
+        FFRoute(
+          name: 'AdminLogin',
+          path: '/adminLogin',
+          builder: (context, params) => AdminLoginWidget(),
+        ),
+        FFRoute(
+          name: 'PropertyOwnerPendingPropertiesList',
+          path: '/propertyOwnerPendingPropertiesList',
           requireAuth: true,
-          builder: (context, params) => ControlPanelCustomerWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) =>
+              PropertyOwnerPendingPropertiesListWidget(),
         ),
         FFRoute(
-          name: 'ControlPanelBookingCustomer',
-          path: '/controlPanelBookingCustomer',
+          name: 'PropertyOwnerRejectedPropertiesList',
+          path: '/propertyOwnerRejectedPropertiesList',
           requireAuth: true,
-          builder: (context, params) => ControlPanelBookingCustomerWidget(
-            pagename: params.getParam(
-              'pagename',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) =>
+              PropertyOwnerRejectedPropertiesListWidget(),
         ),
         FFRoute(
-          name: 'forgotPasswordPage',
-          path: '/forgotPasswordPage',
-          builder: (context, params) => const ForgotPasswordPageWidget(),
-        ),
-        FFRoute(
-          name: 'chatScreen',
-          path: '/chatScreen',
-          builder: (context, params) => const ChatScreenWidget(),
-        ),
-        FFRoute(
-          name: 'HomePageCopy',
-          path: '/homePageCopy',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'HomePageCopy')
-              : HomePageCopyWidget(
-                  pagename: params.getParam(
-                    'pagename',
-                    ParamType.String,
-                  ),
-                ),
+          name: 'AdminPendingPropertiesPage',
+          path: '/adminPendingPropertiesPage',
+          builder: (context, params) => AdminPendingPropertiesPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -425,7 +475,6 @@ class FFParameters {
     ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
-    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -444,7 +493,6 @@ class FFParameters {
       type,
       isList,
       collectionNamePath: collectionNamePath,
-      structBuilder: structBuilder,
     );
   }
 }
@@ -478,7 +526,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/loginRegister';
+            return '/loginPage';
           }
           return null;
         },
@@ -493,14 +541,10 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.transparent,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/appIcon.png',
-                      width: 100.0,
-                      height: 100.0,
-                      fit: BoxFit.scaleDown,
-                    ),
+                  color: FlutterFlowTheme.of(context).primaryBackground,
+                  child: Image.asset(
+                    'assets/images/Launcher_Icon.png',
+                    fit: BoxFit.contain,
                   ),
                 )
               : page;
@@ -545,7 +589,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

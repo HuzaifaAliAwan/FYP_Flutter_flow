@@ -6,11 +6,12 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/util/firestore_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/message_record.dart';
 import 'schema/property_record.dart';
 import 'schema/booking_record.dart';
 import 'schema/payment_record.dart';
 import 'schema/extra_service_record.dart';
+import 'schema/conversations_record.dart';
+import 'schema/messages_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -20,11 +21,12 @@ export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
 export 'schema/users_record.dart';
-export 'schema/message_record.dart';
 export 'schema/property_record.dart';
 export 'schema/booking_record.dart';
 export 'schema/payment_record.dart';
 export 'schema/extra_service_record.dart';
+export 'schema/conversations_record.dart';
+export 'schema/messages_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -58,43 +60,6 @@ Future<List<UsersRecord>> queryUsersRecordOnce({
     queryCollectionOnce(
       UsersRecord.collection,
       UsersRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query MessageRecords (as a Stream and as a Future).
-Future<int> queryMessageRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      MessageRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<MessageRecord>> queryMessageRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      MessageRecord.collection,
-      MessageRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<MessageRecord>> queryMessageRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      MessageRecord.collection,
-      MessageRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
@@ -248,6 +213,83 @@ Future<List<ExtraServiceRecord>> queryExtraServiceRecordOnce({
       singleRecord: singleRecord,
     );
 
+/// Functions to query ConversationsRecords (as a Stream and as a Future).
+Future<int> queryConversationsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ConversationsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ConversationsRecord>> queryConversationsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ConversationsRecord.collection,
+      ConversationsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ConversationsRecord>> queryConversationsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ConversationsRecord.collection,
+      ConversationsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query MessagesRecords (as a Stream and as a Future).
+Future<int> queryMessagesRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      MessagesRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<MessagesRecord>> queryMessagesRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MessagesRecord.collection(parent),
+      MessagesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MessagesRecord>> queryMessagesRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MessagesRecord.collection(parent),
+      MessagesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
 Future<int> queryCollectionCount(
   Query collection, {
   Query Function(Query)? queryBuilder,
@@ -367,7 +409,7 @@ Future<FFFirestorePage<T>> queryCollectionPage<T>(
   } else {
     docSnapshot = await query.get();
   }
-  getDocs(QuerySnapshot s) => s.docs
+  final getDocs = (QuerySnapshot s) => s.docs
       .map(
         (d) => safeGet(
           () => recordBuilder(d),

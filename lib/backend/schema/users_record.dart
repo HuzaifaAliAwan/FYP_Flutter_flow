@@ -3,15 +3,16 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class UsersRecord extends FirestoreRecord {
   UsersRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -50,15 +51,15 @@ class UsersRecord extends FirestoreRecord {
   String get cnic => _cnic ?? '';
   bool hasCnic() => _cnic != null;
 
-  // "role" field.
-  String? _role;
-  String get role => _role ?? '';
-  bool hasRole() => _role != null;
-
   // "uid" field.
   String? _uid;
   String get uid => _uid ?? '';
   bool hasUid() => _uid != null;
+
+  // "role" field.
+  UserType? _role;
+  UserType? get role => _role;
+  bool hasRole() => _role != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -68,8 +69,10 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _address = snapshotData['address'] as String?;
     _cnic = snapshotData['cnic'] as String?;
-    _role = snapshotData['role'] as String?;
     _uid = snapshotData['uid'] as String?;
+    _role = snapshotData['role'] is UserType
+        ? snapshotData['role']
+        : deserializeEnum<UserType>(snapshotData['role']);
   }
 
   static CollectionReference get collection =>
@@ -113,8 +116,8 @@ Map<String, dynamic> createUsersRecordData({
   String? phoneNumber,
   String? address,
   String? cnic,
-  String? role,
   String? uid,
+  UserType? role,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -125,8 +128,8 @@ Map<String, dynamic> createUsersRecordData({
       'phone_number': phoneNumber,
       'address': address,
       'cnic': cnic,
-      'role': role,
       'uid': uid,
+      'role': role,
     }.withoutNulls,
   );
 
@@ -145,8 +148,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.address == e2?.address &&
         e1?.cnic == e2?.cnic &&
-        e1?.role == e2?.role &&
-        e1?.uid == e2?.uid;
+        e1?.uid == e2?.uid &&
+        e1?.role == e2?.role;
   }
 
   @override
@@ -158,8 +161,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.phoneNumber,
         e?.address,
         e?.cnic,
-        e?.role,
-        e?.uid
+        e?.uid,
+        e?.role
       ]);
 
   @override

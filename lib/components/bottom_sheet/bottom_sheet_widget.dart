@@ -25,7 +25,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     super.initState();
     _model = createModel(context, () => BottomSheetModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -42,7 +42,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -50,7 +50,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -81,7 +81,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                             decoration: TextDecoration.underline,
                           ),
                     ),
-                  ].divide(const SizedBox(width: 10.0)),
+                  ].divide(SizedBox(width: 10.0)),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -100,7 +100,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                             letterSpacing: 0.0,
                           ),
                     ),
-                  ].divide(const SizedBox(width: 10.0)),
+                  ].divide(SizedBox(width: 10.0)),
                 ),
               ],
             ),

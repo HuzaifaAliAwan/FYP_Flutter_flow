@@ -1,35 +1,71 @@
 // Export pages
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
-export '/pages/login_register/login_register_widget.dart'
-    show LoginRegisterWidget;
-export '/pages/profile_page/profile_page_widget.dart' show ProfilePageWidget;
-export '/pages/search_property/search_property_widget.dart'
-    show SearchPropertyWidget;
-export '/pages/conversations_page/conversations_page_widget.dart'
-    show ConversationsPageWidget;
-export '/pages/message_page/message_page_widget.dart' show MessagePageWidget;
-export '/pages/control_panel_property_owner/control_panel_property_owner_widget.dart'
-    show ControlPanelPropertyOwnerWidget;
-export '/pages/control_panel_properties/control_panel_properties_widget.dart'
-    show ControlPanelPropertiesWidget;
-export '/pages/control_panel_booking_property_owner/control_panel_booking_property_owner_widget.dart'
-    show ControlPanelBookingPropertyOwnerWidget;
-export '/pages/control_panel_extra_services/control_panel_extra_services_widget.dart'
-    show ControlPanelExtraServicesWidget;
-export '/pages/control_panel_extra_service_edit/control_panel_extra_service_edit_widget.dart'
-    show ControlPanelExtraServiceEditWidget;
-export '/pages/control_panel_properties_edit/control_panel_properties_edit_widget.dart'
-    show ControlPanelPropertiesEditWidget;
-export '/pages/view_property_property_owner/view_property_property_owner_widget.dart'
-    show ViewPropertyPropertyOwnerWidget;
-export '/pages/view_property_customer/view_property_customer_widget.dart'
-    show ViewPropertyCustomerWidget;
-export '/pages/control_panel_customer/control_panel_customer_widget.dart'
-    show ControlPanelCustomerWidget;
-export '/pages/control_panel_booking_customer/control_panel_booking_customer_widget.dart'
-    show ControlPanelBookingCustomerWidget;
-export '/pages/forgot_password_page/forgot_password_page_widget.dart'
-    show ForgotPasswordPageWidget;
-export '/pages/chat_screen/chat_screen_widget.dart' show ChatScreenWidget;
-export '/pages/home_page_copy/home_page_copy_widget.dart'
-    show HomePageCopyWidget;
+export '/common_module/common_pages/control_panel_page/control_panel_page_widget.dart'
+    show ControlPanelPageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_property_module/property_owner_edit_property/property_owner_edit_property_widget.dart'
+    show PropertyOwnerEditPropertyWidget;
+export '/common_module/common_pages/chat_screen_page/chat_screen_page_widget.dart'
+    show ChatScreenPageWidget;
+export '/common_module/common_pages/home_page/home_page_widget.dart'
+    show HomePageWidget;
+export '/common_module/common_pages/profile_page/profile_page_widget.dart'
+    show ProfilePageWidget;
+export '/common_module/common_pages/login_page/login_page_widget.dart'
+    show LoginPageWidget;
+export '/common_module/common_pages/registration_page/registration_page_widget.dart'
+    show RegistrationPageWidget;
+export '/common_module/common_pages/forgot_password/forgot_password_widget.dart'
+    show ForgotPasswordWidget;
+export '/common_module/common_pages/edit_profile_page/edit_profile_page_widget.dart'
+    show EditProfilePageWidget;
+export '/common_module/common_pages/conversation_page/conversation_page_widget.dart'
+    show ConversationPageWidget;
+export '/common_module/common_pages/terms_and_conditions_page/terms_and_conditions_page_widget.dart'
+    show TermsAndConditionsPageWidget;
+export '/common_module/common_pages/support_page/support_page_widget.dart'
+    show SupportPageWidget;
+export '/common_module/common_pages/view_property_page/view_property_page_widget.dart'
+    show ViewPropertyPageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_property_module/property_owner_add_property/property_owner_add_property_widget.dart'
+    show PropertyOwnerAddPropertyWidget;
+export '/property_owner_module/property_owner_pages/property_owner_property_module/property_owner_approved_properties_list/property_owner_approved_properties_list_widget.dart'
+    show PropertyOwnerApprovedPropertiesListWidget;
+export '/property_owner_module/property_owner_pages/property_owner_property_module/property_owner_control_panel_properties/property_owner_control_panel_properties_widget.dart'
+    show PropertyOwnerControlPanelPropertiesWidget;
+export '/property_owner_module/property_owner_pages/property_owner_extra_services/property_owner_control_panel_extra_services/property_owner_control_panel_extra_services_widget.dart'
+    show PropertyOwnerControlPanelExtraServicesWidget;
+export '/property_owner_module/property_owner_pages/property_owner_extra_services/property_owner_add_extra_service_page/property_owner_add_extra_service_page_widget.dart'
+    show PropertyOwnerAddExtraServicePageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_extra_services/property_owner_edit_extra_service_page/property_owner_edit_extra_service_page_widget.dart'
+    show PropertyOwnerEditExtraServicePageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_extra_services/property_owner_extra_services_list_page/property_owner_extra_services_list_page_widget.dart'
+    show PropertyOwnerExtraServicesListPageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_extra_services/property_owner_extra_services_view_page/property_owner_extra_services_view_page_widget.dart'
+    show PropertyOwnerExtraServicesViewPageWidget;
+export '/common_module/common_pages/bookings_control_panel_page/bookings_control_panel_page_widget.dart'
+    show BookingsControlPanelPageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_booking_module/property_owner_booking_requests_page/property_owner_booking_requests_page_widget.dart'
+    show PropertyOwnerBookingRequestsPageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_booking_module/property_owner_active_bookings_page/property_owner_active_bookings_page_widget.dart'
+    show PropertyOwnerActiveBookingsPageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_booking_module/property_owner_booking_history_page/property_owner_booking_history_page_widget.dart'
+    show PropertyOwnerBookingHistoryPageWidget;
+export '/property_owner_module/property_owner_pages/property_owner_booking_module/property_owner_booking_view_page/property_owner_booking_view_page_widget.dart'
+    show PropertyOwnerBookingViewPageWidget;
+export '/customer_module/customer_pages/customer_bookings_module/customer_active_bookings_page/customer_active_bookings_page_widget.dart'
+    show CustomerActiveBookingsPageWidget;
+export '/customer_module/customer_pages/customer_bookings_module/customer_booking_history_page/customer_booking_history_page_widget.dart'
+    show CustomerBookingHistoryPageWidget;
+export '/customer_module/customer_pages/customer_bookings_module/customer_booking_requests_page/customer_booking_requests_page_widget.dart'
+    show CustomerBookingRequestsPageWidget;
+export '/customer_module/customer_pages/customer_bookings_module/customer_booking_view_page/customer_booking_view_page_widget.dart'
+    show CustomerBookingViewPageWidget;
+export '/admin_module/admin_pages/admin_home/admin_home_widget.dart'
+    show AdminHomeWidget;
+export '/admin_module/admin_pages/admin_login/admin_login_widget.dart'
+    show AdminLoginWidget;
+export '/property_owner_module/property_owner_pages/property_owner_property_module/property_owner_pending_properties_list/property_owner_pending_properties_list_widget.dart'
+    show PropertyOwnerPendingPropertiesListWidget;
+export '/property_owner_module/property_owner_pages/property_owner_property_module/property_owner_rejected_properties_list/property_owner_rejected_properties_list_widget.dart'
+    show PropertyOwnerRejectedPropertiesListWidget;
+export '/admin_module/admin_pages/admin_pending_properties_page/admin_pending_properties_page_widget.dart'
+    show AdminPendingPropertiesPageWidget;

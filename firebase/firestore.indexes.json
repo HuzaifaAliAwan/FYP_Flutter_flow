@@ -1,3 +1,18 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "booking",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "propertyId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "checkInDate",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
 }
